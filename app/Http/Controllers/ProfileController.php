@@ -13,4 +13,8 @@ class ProfileController extends Controller
     public function showInformation(int $age, string $name){
         echo"$name - $age años";
     }
+
+    public function loginUser(){
+        return ('Aqui deberia de validarse el inicio de sesion');
+    }
 }
