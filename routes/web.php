@@ -1,32 +1,40 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\InformationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 
 
-//Closures
-Route::get('/', function () {
-    return '¡Bienvenido a My University Progress!';
-});
-Route::get('acerca', function () {
-    return 'My UNiversity progress te ayuda a conocer tu progreso universitario.';
-});
-Route::get('acerca/historia', function () {
-    return 'La idea surge en EL Salvador en el año 2020 con un estudiante universitario.';
-});
-Route::get('acerca/contactos', function () {
-    return 'Escribenos a nuestro correo myuprogress@gmail.com o llamanos al 7182-7890.';
-});
-Route::get('acerca/redessociales', function () {
-    return 'Facebook: My University Progress, INstagram: @myu_progress';
+//Using controllers and 
+
+Route::get('/', [IndexController::class, 'welcome'])->name('inicio');
+Route::get('login', [ProfileController::class, 'loginUser'])->name('login');
+//Prefijo para 'acerca'
+Route::prefix('acerca')->group(function() {
+    Route::get('/', [AboutController::class, 'show_about']);
+    Route::get('/historia', [AboutController::class, 'show_history']);
 });
 
-//controller
-Route::post('career', 'ProfileController@showCareer');
-Route::get('information', 'ProfileController@showInformation');
-Route::get('objetivos', 'InformationController@showObjectives');
-Route::get('alcances-a-futuro', 'InformationCOntroller@showReach');
-Route::get('desarrolladores', 'InformationCOntroller@showDevelopers');
+//Prefijo para 'contactos'
+Route::prefix('contactos')->group(function(){
+    Route::get('email', [ContactController::class, 'show_email']);
+    Route::get('redessociales', [ContactController::class, 'show_social_media']);
+});
+//Autenticacion para el perfil
+Route::middleware('auth')->group(function(){
+    Route::post('career', [ProfileController::class, 'showCareer']);
+    Route::get('information/{age}/{name}', [ProfileController::class, 'showInformation']);
+});
+//Prefijo para 'info'
+Route::prefix('info')->group(function(){
+    Route::get('objetivos', [InformationController::class, 'showObjectives']);
+    Route::get('alcances-a-futuro', [InformationController::class, 'showReach']);
+    Route::get('desarrolladores', [InformationController::class, 'showDevelopers']);
+});
+
 
 
 
