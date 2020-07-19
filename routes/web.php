@@ -6,12 +6,21 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InformationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 
 
-//Using controllers and 
+//Rutas de bienvenida 
 
 Route::get('/', [IndexController::class, 'welcome'])->name('inicio');
 Route::get('login', [ProfileController::class, 'loginUser'])->name('login');
+Route::prefix('singup')->group(function(){
+    Route::get('partOne', [ProfileController::class, 'singUp'])->name('singUp');
+    Route::get('partTwo', [ProfileController::class, 'singUpTwo'])->name('singUp2');
+});
+//Busqueda
+Route::prefix('search')->group(function(){
+    Route::get('results', [SearchController::class, 'results']);
+});
 //Prefijo para 'acerca'
 Route::prefix('acerca')->group(function() {
     Route::get('/', [AboutController::class, 'show_about']);
@@ -23,7 +32,7 @@ Route::prefix('contactos')->group(function(){
     Route::get('email', [ContactController::class, 'show_email']);
     Route::get('redessociales', [ContactController::class, 'show_social_media']);
 });
-//Autenticacion para el perfil
+//Autenticacion para el perfil.
 Route::middleware('auth')->group(function(){
     Route::post('career', [ProfileController::class, 'showCareer']);
     Route::get('information/{age}/{name}', [ProfileController::class, 'showInformation']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use mysqli;
 
 class ProfileController extends Controller
 {
@@ -15,6 +16,14 @@ class ProfileController extends Controller
     }
 
     public function loginUser(){
-        return ('Aqui deberia de validarse el inicio de sesion');
+        return view('welcome_views.login');
+    }
+
+    public function singUp(){
+        return view('welcome_views.singup');
+    }
+
+    public function singUpTwo(){
+        return view('welcome_views.singup2');
     }
 }
