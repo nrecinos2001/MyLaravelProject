@@ -9,7 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 
 
-//Rutas de bienvenida 
+//Welcome rutes and related with profile
 
 Route::get('/', [IndexController::class, 'welcome'])->name('inicio');
 Route::get('login', [ProfileController::class, 'loginUser'])->name('login');
@@ -17,12 +17,13 @@ Route::prefix('singup')->group(function(){
     Route::get('partOne', [ProfileController::class, 'singUp'])->name('singUp');
     Route::get('partTwo', [ProfileController::class, 'singUpTwo'])->name('singUp2');
 });
+Route::get('profile/me', [ProfileController::class, 'myProfile'])->name('myProfile');
 //Busqueda
 Route::prefix('search')->group(function(){
     Route::get('results', [SearchController::class, 'results']);
 });
 //Prefijo para 'acerca'
-Route::prefix('acerca')->group(function() {
+Route::prefix('about')->group(function() {
     Route::get('/', [AboutController::class, 'show_about']);
     Route::get('/historia', [AboutController::class, 'show_history']);
 });

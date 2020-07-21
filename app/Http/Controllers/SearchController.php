@@ -7,6 +7,33 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     public function results(){
-        return view('search.search_results');
+        $search = "nestor_recinos@mup.uca";
+        $people = [
+            $search => 'Nestor Recinos',
+        ];
+        $users = [
+            $search => 'nestor_recinos@mup.ues',
+        ];
+        $university = [
+            $search => 'Centroamericana Jose Simeon Cañas'
+        ];
+        $universityColor = [
+            $search => 'bg-blue-700'
+        ];
+        $career = [
+            $search => 'Ingenieria Informatica'
+        ];
+        $country =[
+            $search => 'El Salvador'
+        ];
+        $information = [
+            'name' => $people[$search],
+            'username' => $users[$search],
+            'university' => $university[$search],
+            'career' => $career[$search],
+            'country' => $country[$search],
+            'color' => $universityColor[$search]
+        ];
+        return view('search.search_results', ['info'=>$information]);
     }
 }

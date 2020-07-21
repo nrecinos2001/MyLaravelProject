@@ -20,19 +20,13 @@
         <div class="px-2">
             <img src="images/logo_white.png" alt="Logo" class="w-auto px-2">
         </div>
-        <div>
-            <p class="text-center text-base px-1">
-                ¡Llevar tu control universitario nunca habia sido tan facil!
-                <br>
-                <span class="italic">My University Progress</span> busca ayudarte a llevar todo lo relacionado
-                a tus notas y metas universitarias trazadas por ti mismo. <br>
-                Buscamos ayudarte apoyandonos en graficas y reconocimientos por tus logros durante el transcurso
-                de tu carrera y asi poder motivarte a dar lo mejor de ti mismo siempre.
-                Pero... ¿piensas que lo haras solo? La respuesta es ¡NO! Vinculate con mas estudiantes universitarios
-                independientemente pertenezcan o no la misma carrera o universidad porque todos tienen metas dentro de 
-                cada semestre, tus ideas pueden ser punto de partida para la mejora en la vida academica de otro estudiante.
-            </p>
-            <br>
+        <div >
+            <a href="about/">
+                <button class="bg-white hover:bg-purple-100 text-purple-400 font-bold py-2 px-4 rounded margin-white">
+                    Acerca de nosotros
+                </button>
+            </a>
+            <br><br>
             <a href="login/">
                 <button class="bg-white hover:bg-purple-100 text-purple-400 font-bold py-2 px-4 rounded margin-white">
                     Login!
