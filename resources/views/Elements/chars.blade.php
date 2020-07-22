@@ -8,9 +8,9 @@
             labels: ['Completado', 'Restante'],
             datasets:[{
                 label: 'Progreso de la carrera',
-                data: [4.5, 95.5],
+                data: [ {{$pro['done']}}, {{$pro['missing']}}],
                 backgroundColor: [
-                    '#48bb78', '#9f7aea', '#48bb78'
+                    '#48bb78', '#9f7aea'
                 ]
             }] 
         },

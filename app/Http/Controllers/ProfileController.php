@@ -24,7 +24,7 @@ class ProfileController extends Controller
             $search => 'Nestor Recinos',
         ];
         $users = [
-            $search => 'nestor_recinos@mup.ues',
+            $search => 'nestor_recinos@mup.uca',
         ];
         $university = [
             $search => 'Centroamericana Jose Simeon Cañas'
@@ -46,7 +46,14 @@ class ProfileController extends Controller
             'country' => $country[$search],
             'color' => $universityColor[$search]
         ];
-        return view('Profile.profile', ['info'=>$information]);
+        //Progress of the career
+        $done = 4.5;
+        $missing = 100-$done;
+        $progress = [
+            'done' => $done,
+            'missing' => $missing
+        ];
+        return view('Profile.profile', ['info'=>$information], ['pro'=>$progress]);
     }
     public function singUp(){
         return view('welcome_views.singup');
