@@ -13,7 +13,10 @@
             <img src="/images/Universities_Logos/UCA_ES.jpg" alt="" class="lg:w-auto h-64 sm:w-full mx-auto">
         </div>
         <div class="lg:w-1/2 rounded my-auto sm:w-full text-center">
-            <p class="text-base mx-5">{{$info['career']}} - Universidad {{$info['university']}} <br></p>
+            <p class="text-base mx-5">{{$info['career']}} - Universidad {{$info['university']}}</p>
+            <ul class="text-base mx-5 italic mt-3">
+                <li class="mx-auto"> <a href="/profile/me/myScores">Ver mis notas. </a></li>
+            </ul>
         </div>
         <div class="w-auto mx-auto text-center my-auto">
             <img src="/images/Profile_Pics/nrecinos.jpg" alt="{{$info['name']}}" class="w-20 h-20 lg:mx-auto rounded-full mx-auto">
@@ -21,18 +24,14 @@
             <p class="text-sm mx-5">{{$info['username']}}</p>
         </div>
     </div>
-    <div class="lg:flex w-full">
-        <div class="lg:w-1/2 mx-auto my-auto sm:w-full">
-            <h3 class="text-green-500 text-xl text-center">Progreso de la carrera</h3>
-            <br>
-            <ul class="text-lg">
-                <li class="mx-auto">Ver mis notas</li>
-                <li class="mx-auto">Ver mis propositos</li>
-            </ul>
-        </div>
-        <div class="lg:w-1/2 h-64 mx-auto sm:w-full">
-            @include('Elements.chars')
-        </div>
+    <div class="lg:w-1/2 mx-auto my-auto sm:w-full">
+        <h3 class="text-green-500 text-xl text-center">Progreso de la carrera</h3>
+        <br>
+    </div>
+    <div class="lg:flex lg:w-2/4 h-64 ml-1/4 sm:w-full">
+        @include('Elements.chart')
+        {{-- <div class="lg:w-3/4 h-64 mx-auto sm:w-full">
+        </div> --}}
     </div>
 </body>
 </html>

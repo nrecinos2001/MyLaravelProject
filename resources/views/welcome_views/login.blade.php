@@ -14,11 +14,11 @@
         <h1 class="font-bold text-xl">
             <a href="/">My University Progress</a>
         </h1>
-        <form action="" class="py-5">
+        <form action="/profile/me" class="py-5">
             @csrf
-            <input type="text" placeholder="Usuario" class="border border-purple-300 my-3 py-1 px-1 rounded">
+            <input type="text" placeholder="Usuario" name="user" class="border border-purple-300 my-3 py-1 px-1 rounded">
             <br>
-            <input type="password" placeholder="Contraseña" class="border border-purple-300 my-3 py-1 px-1 rounded">
+            <input type="password" placeholder="Contraseña" name="password" class="border border-purple-300 my-3 py-1 px-1 rounded">
             <br>
             <button class="bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">Ingresar</button>
         </form>

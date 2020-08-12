@@ -17,7 +17,14 @@ Route::prefix('singup')->group(function(){
     Route::get('partOne', [ProfileController::class, 'singUp'])->name('singUp');
     Route::get('partTwo', [ProfileController::class, 'singUpTwo'])->name('singUp2');
 });
-Route::get('profile/me', [ProfileController::class, 'myProfile'])->name('myProfile');
+Route::prefix('profile/me')->group(function(){
+    Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
+    Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myProfile');
+    Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
+});
+Route::middleware('auth')->group(function(){
+    Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
+});
 //Busqueda
 Route::prefix('search')->group(function(){
     Route::get('results', [SearchController::class, 'results']);
