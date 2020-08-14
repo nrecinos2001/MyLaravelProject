@@ -17,6 +17,7 @@ class CreateFacultiesTable extends Migration
             $table->id();
             $table->text('id_f');
             $table->text('name');
+            $table->timestamps();
         });
     }
 
