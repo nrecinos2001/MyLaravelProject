@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; 
+use App\Models\Universities;
+use App\Models\Countries;
+use App\Models\Careers;
+use App\Models\Faculties;
+
 use mysqli;
 
 class ProfileController extends Controller
@@ -12,13 +18,19 @@ class ProfileController extends Controller
         return view('welcome_views.login');
     }
     public function singUp(){
-        return view('welcome_views.singup');
+        $countries = Countries::select('id', 'name')->get();
+        $universities = Universities::select('id', 'name')->get();
+        return view('welcome_views.singup', compact('countries'), compact('universities'));
     }
     public function singUpTwo(){
-        return view('welcome_views.singup2');
+        $careers = Careers::select('id', 'name')->get();
+        $faculties = Faculties::select('id', 'name')->get();
+        return view('welcome_views.singup2', compact('careers'), compact('faculties'));
     }
     //Profile
     public function myProfile(){
+        $country1 = DB::table('countries')->select('*')->orderBy('name', 'asc')->get();
+
         $user = $_REQUEST['user'];
         $password = $_REQUEST['password'];
         //LOGIN DATA
@@ -71,6 +83,8 @@ class ProfileController extends Controller
 
         if(($user == $loginData['username']) && ($password == $loginData['password'])){
             return view('Profile.profile', ['info'=>$information], ['pro'=>$progress]);
+        }elseif ($user == "admin.mup@mup" && $password == "SohCahToa") {
+            return view('Admin.admin_view', ['country'=>$country1]);
         }else{
             return view('welcome_views.login');
         }
@@ -138,5 +152,6 @@ class ProfileController extends Controller
         ];
         return view('Profile.adding', ['info'=>$information, 'nOfSub'=>$nos]);
     }
+    
     
 }

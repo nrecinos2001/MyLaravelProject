@@ -26,8 +26,10 @@
                 <input required type="password" placeholder="Ingresa tu contraseña" name="passWord" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <input required type="text" placeholder="Ingresa tu Carne" name="ID" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <select required name="country" id="" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    <option selected >Selecciona tu pais</option>
-                    <option value="">El Salvador</option>
+                    <option selected disabled>Selecciona tu pais</option>
+                    @foreach ($countries as $country)
+                    <option value="{{$country->id}}">{{$country->name}}</option>
+                    @endforeach
                 </select>
                 <select required name="genre" id="" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     <option selected disabled>Selecciona tu sexo</option>
@@ -37,7 +39,9 @@
                 </select>
                 <select required name="university" id="" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     <option selected disabled>Selecciona tu universidad</option>
-                    <option value="">Universidad Centroamericana Jose Simeon Cañas</option>
+                    @foreach ($universities as $university)
+                    <option value="{{$university->id}}">{{$university->name}}</option>
+                    @endforeach
                 </select>
             </div>
             

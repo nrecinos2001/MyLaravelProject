@@ -34,16 +34,5 @@
             </a>
         </div>
     </div>
-
-    <div class="mb-none">
-        <footer class="mx-auto w-1/2 text-center">
-            <a href="https://www.facebook.com">
-                <img src="images/smIcons/facebook.svg" alt="Facebook Page" class="w-10 inline-block">
-            </a>
-            <a href="https://www.instagram.com">
-                <img src="images/smIcons/instagram.svg" alt="Instagram Page" class="w-10 inline-block">
-            </a>
-        </footer>
-    </div>
 </body>
 </html

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InformationController;
@@ -17,14 +18,14 @@ Route::prefix('singup')->group(function(){
     Route::get('partOne', [ProfileController::class, 'singUp'])->name('singUp');
     Route::get('partTwo', [ProfileController::class, 'singUpTwo'])->name('singUp2');
 });
-Route::prefix('profile/me')->group(function(){
-    Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
-    Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myProfile');
-    Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
-});
-Route::middleware('auth')->group(function(){
-    Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
-});
+//Route::middleware('auth')->group(function(){
+    Route::prefix('profile/me')->group(function(){
+        Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
+        Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myProfile');
+        Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
+    });
+    Route::get('admin', [ProfileController::class, 'myProfile'])->name('adminAccess');
+//});
 //Busqueda
 Route::prefix('search')->group(function(){
     Route::get('results', [SearchController::class, 'results']);
@@ -35,22 +36,15 @@ Route::prefix('about')->group(function() {
     Route::get('/historia', [AboutController::class, 'show_history']);
 });
 
-//Prefijo para 'contactos'
-Route::prefix('contactos')->group(function(){
-    Route::get('email', [ContactController::class, 'show_email']);
-    Route::get('redessociales', [ContactController::class, 'show_social_media']);
+//Añadir Información por el administrador
+Route::prefix('admin/add')->group(function() {
+    Route::post('University', [AdminController::class, 'addUniversity']);
+    Route::post('Subject', [AdminController::class, 'addSubject']);
+    Route::post('Faculty', [AdminController::class, 'addFaculty']);
+    Route::post('Career', [AdminController::class, 'addCareer']);
+    Route::post('Country', [AdminController::class, 'addCountry']);
 });
-//Autenticacion para el perfil.
-Route::middleware('auth')->group(function(){
-    Route::post('career', [ProfileController::class, 'showCareer']);
-    Route::get('information/{age}/{name}', [ProfileController::class, 'showInformation']);
-});
-//Prefijo para 'info'
-Route::prefix('info')->group(function(){
-    Route::get('objetivos', [InformationController::class, 'showObjectives']);
-    Route::get('alcances-a-futuro', [InformationController::class, 'showReach']);
-    Route::get('desarrolladores', [InformationController::class, 'showDevelopers']);
-});
+
 
 
 

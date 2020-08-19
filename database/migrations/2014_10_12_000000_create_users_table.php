@@ -22,9 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->char('gender', 1);
-            $table->string('university');
-            $table->string('career');
-            $table->integer('country');
+            $table->integer('university_id');
+            $table->integer('career_id');
+            $table->integer('faculty_id');
+            $table->integer('country_id');
             $table->rememberToken();
             $table->timestamps();
         });

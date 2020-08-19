@@ -16,14 +16,21 @@
         </h1>
         <form action="" class="py-5">
             @csrf
-            <input type="text" placeholder="Ingresa tu nombre de usuario" class="border border-purple-300 my-3 py-1 px-1 rounded">
-            <br>
-            <i class="text-sm">Tu nombre de usuario ira concatenado a un @mup.siglas de tu universidad, por ejemplo: hector_10@mup.uca</i>
-            <br>
-            <select required name="country" id="" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <option selected >Selecciona tu carrera</option>
-                <option value="">Ingenieria Informatica</option>
+            <select required name="country" id="" class="w-1/2 border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                <option selected disabled>Selecciona tu carrera</option>
+                @foreach ($careers as $career)
+                <option value="{{$career->id}}">{{$career->name}}</option>
+                @endforeach
             </select>
+            <br>
+            <select required name="country" id="" class="w-1/2 border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                <option selected disabled>Selecciona tu Facultad</option>
+                @foreach ($faculties as $faculty)
+                <option value="{{$faculty->id}}">{{$faculty->name}}</option>
+                @endforeach
+            </select>
+            <br>
+            <input type="text" placeholder="Ingresa tu nombre de usuario" class="w-1/2 border border-purple-300 my-3 py-1 px-1 rounded">
             <br>
             <button class="bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">Ingresar</button>
         </form>
