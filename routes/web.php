@@ -8,15 +8,16 @@ use App\Http\Controllers\InformationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
-
+use App\Http\Controllers\SingUpController;
 
 //Welcome rutes and related with profile
 
 Route::get('/', [IndexController::class, 'welcome'])->name('inicio');
 Route::get('login', [ProfileController::class, 'loginUser'])->name('login');
 Route::prefix('singup')->group(function(){
-    Route::get('partOne', [ProfileController::class, 'singUp'])->name('singUp');
-    Route::get('partTwo', [ProfileController::class, 'singUpTwo'])->name('singUp2');
+    Route::get('partOne', [SingUpController::class, 'singUp'])->name('singUp');
+    Route::post('partTwo', [SingUpController::class, 'singUpTwo'])->name('singUp2');
+    Route::post('partThree', [SingUpController::class], 'singUpThree')->name('singUp3');
 });
 //Route::middleware('auth')->group(function(){
     Route::prefix('profile/me')->group(function(){

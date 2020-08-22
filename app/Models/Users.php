@@ -9,7 +9,7 @@ class Users extends Model
     protected $fillable = [
         'id_student',
         'name',
-        'last_name',
+        'lastname',
         'email',
         'username',
         'password',
@@ -17,6 +17,7 @@ class Users extends Model
         'university_id',
         'career_id',
         'faculty_id',
-        'country_id'
+        'country_id',
+        'image'
     ];
 }

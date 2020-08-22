@@ -12,7 +12,7 @@
     @include('Elements.navbar')
     <div class="mt-3 text-center text-lg text-purple-500">
         <h3 class="bold">
-            Seleccione su materia y digite su nota
+            Seleccione su materia y digite su nota y número de unidades valorativas (En este orden)
         </h3>
     </div>
     <div class="container mt-5 w-1/2 mx-auto text-center text-black">

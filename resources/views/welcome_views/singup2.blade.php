@@ -14,26 +14,12 @@
         <h1 class="font-bold text-xl">
             <a href="/">My University Progress</a>
         </h1>
-        <form action="" class="py-5">
-            @csrf
-            <select required name="country" id="" class="w-1/2 border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <option selected disabled>Selecciona tu carrera</option>
-                @foreach ($careers as $career)
-                <option value="{{$career->id}}">{{$career->name}}</option>
-                @endforeach
-            </select>
-            <br>
-            <select required name="country" id="" class="w-1/2 border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <option selected disabled>Selecciona tu Facultad</option>
-                @foreach ($faculties as $faculty)
-                <option value="{{$faculty->id}}">{{$faculty->name}}</option>
-                @endforeach
-            </select>
-            <br>
-            <input type="text" placeholder="Ingresa tu nombre de usuario" class="w-1/2 border border-purple-300 my-3 py-1 px-1 rounded">
-            <br>
-            <button class="bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">Ingresar</button>
-        </form>
+        <strong class="text-purple-600 text-center text-2xl">
+            ¡Sus registros fueron añadidos con éxito, {{$name}}!
+        </strong>
+        <a href="/login/">
+            <button class="bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white mb-5">Iniciar sesión</button>
+        </a>
     </div>
 </body>
 </html>

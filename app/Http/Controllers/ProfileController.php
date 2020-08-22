@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\DB;
+use App\Models\Users; 
 use App\Models\Universities;
 use App\Models\Countries;
 use App\Models\Careers;
 use App\Models\Faculties;
-
+use App\Models\Subjects;
 use mysqli;
 
 class ProfileController extends Controller
@@ -17,22 +18,13 @@ class ProfileController extends Controller
     public function loginUser(){
         return view('welcome_views.login');
     }
-    public function singUp(){
-        $countries = Countries::select('id', 'name')->get();
-        $universities = Universities::select('id', 'name')->get();
-        return view('welcome_views.singup', compact('countries'), compact('universities'));
-    }
-    public function singUpTwo(){
-        $careers = Careers::select('id', 'name')->get();
-        $faculties = Faculties::select('id', 'name')->get();
-        return view('welcome_views.singup2', compact('careers'), compact('faculties'));
-    }
-    //Profile
-    public function myProfile(){
-        $country1 = DB::table('countries')->select('*')->orderBy('name', 'asc')->get();
 
-        $user = $_REQUEST['user'];
-        $password = $_REQUEST['password'];
+    //Profile
+    public function myProfile(Request $request){
+        $countries = Countries::select('*')->orderBy('name', 'asc')->get();
+
+        $user = $request->user;
+        $password = $request->password;
         //LOGIN DATA
         $loginData = [
             'username' => 'nestor.recinos@mup.uca',
@@ -84,7 +76,7 @@ class ProfileController extends Controller
         if(($user == $loginData['username']) && ($password == $loginData['password'])){
             return view('Profile.profile', ['info'=>$information], ['pro'=>$progress]);
         }elseif ($user == "admin.mup@mup" && $password == "SohCahToa") {
-            return view('Admin.admin_view', ['country'=>$country1]);
+            return view('Admin.admin_view', ['country'=>$countries]);
         }else{
             return view('welcome_views.login');
         }
@@ -121,6 +113,7 @@ class ProfileController extends Controller
     }
 
     public function adding(){
+        $subjects = Subjects::select('id', 'name')->orderBy('name', 'asc')->get();
         $nos = $_REQUEST['nos'];
         $cicle = $_REQUEST['cicle'];
         $search = "nestor_recinos@mup.uca";
@@ -150,7 +143,7 @@ class ProfileController extends Controller
             'country' => $country[$search],
             'color' => $universityColor[$search]
         ];
-        return view('Profile.adding', ['info'=>$information, 'nOfSub'=>$nos]);
+        return view('Profile.adding', compact('subjects'), ['info'=>$information, 'nOfSub'=>$nos]);
     }
     
     
