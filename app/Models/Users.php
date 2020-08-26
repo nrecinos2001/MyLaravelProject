@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Universities;
 
 class Users extends Model
 {
@@ -20,4 +21,9 @@ class Users extends Model
         'country_id',
         'image'
     ];
+
+    public function university()
+    {
+        return $this->hasOne(Universities::class, 'id');
+    }
 }

@@ -17,7 +17,7 @@
     </div>
     <div class="container mt-5 w-1/2 mx-auto text-center text-black">
         <form action="">
-            <input type="hidden" value=" {{ $info['username'] }} ">
+            <input type="hidden" value=" {{ $user->username }} ">
             @for ($i = 0; $i < $nOfSub; $i++)
                 @include('Elements.subjectsForm')
             @endfor

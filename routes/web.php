@@ -2,9 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\InformationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
@@ -21,7 +19,7 @@ Route::prefix('singup')->group(function(){
 });
 //Route::middleware('auth')->group(function(){
     Route::prefix('profile/me')->group(function(){
-        Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
+        Route::post('/', [ProfileController::class, 'myProfile'])->name('myProfile');
         Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myProfile');
         Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
     });

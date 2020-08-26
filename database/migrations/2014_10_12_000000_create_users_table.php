@@ -25,11 +25,10 @@ class CreateUsersTable extends Migration
                 $table->string('password');
                 $table->char('gender', 1);
                 $table->integer('university_id')->index();
-                $table->integer('career_id')->nullable();
-                $table->integer('faculty_id')->nullable();
+                $table->integer('career_id')->index();
+                $table->integer('faculty_id')->index();
                 $table->integer('country_id')->index();
                 $table->string('image')->nullable();
-                $table->rememberToken();
                 $table->timestamps();
         });
     }

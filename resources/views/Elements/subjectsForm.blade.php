@@ -5,6 +5,6 @@
         <option value="{{$subject->id}}">{{$subject->name}}</option>
         @endforeach
     </select>
-    <input type="number" value="{{$i}}" placeholder="Ingrese su nota" min="0" max="10" class="border rounded mx-2">
-    <input type="number" value="{{$i}}" placeholder="Número de Unidades valorativas" min="1" max="9" class="border rounded">
+    <input type="number" name="score" placeholder="Nota" min="0" max="10" class="border rounded mx-2">
+    <input type="number" name="uV" placeholder="Unidades Valorativas" min="1" max="9" class="border rounded">
 </div>

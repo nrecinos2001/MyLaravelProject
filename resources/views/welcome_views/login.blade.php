@@ -14,7 +14,7 @@
         <h1 class="font-bold text-xl">
             <a href="/">My University Progress</a>
         </h1>
-        <form action="/profile/me" class="py-5">
+        <form action="/profile/me" class="py-5" method="POST">
             @csrf
             <input type="text" placeholder="Usuario" name="user" class="border border-purple-300 my-3 py-1 px-1 rounded">
             <br>

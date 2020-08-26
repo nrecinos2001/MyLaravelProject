@@ -15,7 +15,11 @@
     <div class="lg:mr-0 lg:w-auto my-auto py-auto sm:w-full">
         <a href="/profile/me" class="flex">
             <img src="/images/Profile_Pics/nrecinos.jpg" alt="Profile Pic" class="rounded-full w-20 h-20 mx-auto">
-            <p class="lg:mx-1 my-auto px-auto mx-auto py-auto text-white">{{$info['name']}}</p>
+            <p class="lg:mx-1 my-auto px-auto mx-auto py-auto text-white">
+                @foreach ($users as $user)
+                    {{$user->name}} {{$user->lastname}}
+                @endforeach
+            </p>
         </a>
     </div>
 </div>
