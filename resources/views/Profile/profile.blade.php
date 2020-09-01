@@ -13,7 +13,7 @@
             <img src="/images/Universities_Logos/UCA_ES.jpg" alt="" class="lg:w-auto h-64 sm:w-full mx-auto">
         </div>
         <div class="lg:w-1/2 rounded my-auto sm:w-full text-center">
-            <p class="text-base mx-5">{{$info['career']}} - {{$users->university->name}}</p>
+            <p class="text-base mx-5">{{$info['career']}} - {{$info['university']}}</p>
             <ul class="text-base mx-5 italic mt-3">
                 <li class="mx-auto"> <a href="/profile/me/myScores">Ver mis notas. </a></li>
             </ul>

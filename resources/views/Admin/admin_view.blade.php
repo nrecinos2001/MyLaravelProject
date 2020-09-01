@@ -29,6 +29,12 @@
         Añadir universidad
     </button>
     <br>
+    @if (session('uStored'))
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Universidad almacenada con éxito!
+        </div>
+        <br>
+    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="universities">
         <form action="/admin/add/University/" method="POST">
             @csrf
@@ -57,6 +63,12 @@
         Añadir Materia
     </button>
     <br>
+    @if (session('subStored'))
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Materia almacenada con éxito!
+        </div>
+        <br>
+    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="subjects">
         <form action="/admin/add/Subject/" method="POST">
             @csrf
@@ -74,6 +86,12 @@
         Añadir facultad
     </button>
     <br>
+    @if (session('facStored'))
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Facultad almacenada con éxito!
+        </div>
+        <br>
+    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="faculty">
         <form action="/admin/add/Faculty/" method="POST">
             @csrf
@@ -91,6 +109,12 @@
         Añadir Carrera
     </button>
     <br>
+    @if (session('cStored'))
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Carrera almacenada con éxito!
+        </div>
+        <br>
+    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="career">
         <form action="/admin/add/Career/" method="POST">
             @csrf
@@ -107,6 +131,12 @@
         Añadir País
     </button>
     <br>
+    @if (session('counStored'))
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡País almacenado con éxito!
+        </div>
+        <br>
+    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="country">
         <form action="/admin/add/Country/" method="POST">
             @csrf

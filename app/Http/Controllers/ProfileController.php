@@ -10,6 +10,7 @@ use App\Models\Countries;
 use App\Models\Careers;
 use App\Models\Faculties;
 use App\Models\Subjects;
+use App\Models\Scores;
 use App\User;
 use mysqli;
 
@@ -73,46 +74,24 @@ class ProfileController extends Controller
             'CUM_miss' => $missCum
         ];
 
-        $usersAll = Users::select('*')->get();
+        $usersAll = Users::get();
         if ($loginData['username'] == $request->user && $loginData['password'] == $request->password) {
-            return view('Admin.admin_view', ['country'=>$countries]);
+            //$user = Users::where('id_student', '00083120')->findOrFail($id);
+            //return view('Admin.admin_view', ['country'=>$countries]);
+            return redirect()->route('adminAccess');
         }else{
             $users = Users::select('*')->where('id_student', '00083120')->get();
-            dd($users);
+            /* dd($users); */
             return view('Profile.profile',  compact('users'), ['info'=>$information, 'pro'=>$progress]);
             }
         }
         /* if(($user == $loginData['username']) && ($password == $loginData['password'])){*/
+    
     public function myScores(Request $request){
         $users = Users::select('*')->where('id_student', '00083120')->get();
-        /* $search = "nestor_recinos@mup.uca";
-        $people = [
-            $search => 'Nestor Recinos',
-        ];
-        $users = [
-            $search => 'nestor_recinos@mup.uca',
-        ];
-        $university = [
-            $search => 'Centroamericana Jose Simeon Cañas'
-        ];
-        $universityColor = [
-            $search => 'bg-blue-700'
-        ];
-        $career = [
-            $search => 'Ingenieria Informatica'
-        ];
-        $country =[
-            $search => 'El Salvador'
-        ];
-        $information = [
-            'name' => $people[$search],
-            'username' => $users[$search],
-            'university' => $university[$search],
-            'career' => $career[$search],
-            'country' => $country[$search],
-            'color' => $universityColor[$search]
-        ]; */
-        return view('Profile.myScores', compact('users'));
+        $scores = Scores::select('*')->where('student_id', '00083120')->get();
+        
+        return view('Profile.myScores', compact('users', 'scores'));
     }
 
     public function adding(Request $request){
@@ -148,7 +127,7 @@ class ProfileController extends Controller
             'color' => $universityColor[$search]
         ]; */
         //dd($user);
-        return view('Profile.adding', compact('subjects', 'users'), ['nOfSub'=>$nos]);
+        return view('Profile.adding', compact('subjects', 'users'), ['nOfSub'=>$nos, 'cicle'=>$cicle]);
     }
     
     

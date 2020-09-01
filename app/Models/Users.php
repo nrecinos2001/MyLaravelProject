@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Universities;
 
 class Users extends Model
 {
@@ -24,6 +23,9 @@ class Users extends Model
 
     public function university()
     {
-        return $this->hasOne(Universities::class, 'id');
+        return $this->hasOne(Universities::class);
+    }
+    public function scores(){
+        return $this->hasMany(Scores::class);
     }
 }

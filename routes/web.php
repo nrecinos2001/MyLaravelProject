@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScoresAddingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SingUpController;
 
@@ -20,10 +21,12 @@ Route::prefix('singup')->group(function(){
 //Route::middleware('auth')->group(function(){
     Route::prefix('profile/me')->group(function(){
         Route::post('/', [ProfileController::class, 'myProfile'])->name('myProfile');
-        Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myProfile');
+        Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myScores');
         Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
+        //Añadir notas del usuario
+        Route::post('/myScores/adding', [ScoresAddingController::class, 'adding'])->name('adding');
     });
-    Route::get('admin', [ProfileController::class, 'myProfile'])->name('adminAccess');
+    Route::get('profile/admin', [AdminController::class, 'myAdminProfile'])->name('adminAccess');
 //});
 //Busqueda
 Route::prefix('search')->group(function(){
@@ -34,7 +37,6 @@ Route::prefix('about')->group(function() {
     Route::get('/', [AboutController::class, 'show_about']);
     Route::get('/historia', [AboutController::class, 'show_history']);
 });
-
 //Añadir Información por el administrador
 Route::prefix('admin/add')->group(function() {
     Route::post('University', [AdminController::class, 'addUniversity']);

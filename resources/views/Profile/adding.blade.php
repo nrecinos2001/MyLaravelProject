@@ -16,8 +16,13 @@
         </h3>
     </div>
     <div class="container mt-5 w-1/2 mx-auto text-center text-black">
-        <form action="">
-            <input type="hidden" value=" {{ $user->username }} ">
+        <form action="/profile/me/myScores/adding" method="POST">
+            @csrf
+            <input type="hidden" value="{{$nOfSub}}" name="nOfS">
+            <input type="hidden" value="{{$cicle}}" name="cicle">
+            @foreach ($users as $user)
+            <input type="hidden" name="s_ID" value=" {{ $user->id_student }} ">
+            @endforeach
             @for ($i = 0; $i < $nOfSub; $i++)
                 @include('Elements.subjectsForm')
             @endfor

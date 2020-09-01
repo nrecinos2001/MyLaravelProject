@@ -19,6 +19,7 @@ class CreateScoresTable extends Migration
             $table->string('subject_id');
             $table->float('score', 3, 2);
             $table->integer('UV');
+            $table->integer('cicle');
             $table->timestamps();
         });
     }

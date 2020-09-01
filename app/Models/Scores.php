@@ -10,6 +10,7 @@ class Scores extends Model
         'student_id',
         'subject_id',
         'score',
-        'UV'
+        'UV',
+        'cicle'
     ];
 }

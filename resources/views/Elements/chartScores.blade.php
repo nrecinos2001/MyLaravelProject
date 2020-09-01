@@ -1,6 +1,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
+@foreach ($scores as $score)
 @for ($i = 0; $i < 10; $i++)
+
 <div class="w-full mt-5">
     <canvas id="myChart_{{$i}}" class="mx-auto">    </canvas>
 </div>
@@ -9,11 +11,10 @@
     var myChart{{$i}} = new Chart(ctx{{$i}}, {
     type: 'bar',
     data: {
-        labels: ['Precalculo', 'EECyT',
-        'Matematica Discreta I', 'Fundamentos de Programaciòn'],
+        labels: ['{{$score->subject_id}}',],
         datasets: [{
-            label: 'Ciclo {{$i+1}}',
-            data: [6.6, 8.4, 8.2, 9.5],
+            label: 'Ciclo {{$score->cicle}}',
+            data: [{{$score->score}}],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.60)',
                 'rgba(54, 162, 235, 0.60)',
@@ -45,3 +46,4 @@
 });
 </script>
 @endfor
+@endforeach

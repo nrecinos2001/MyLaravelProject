@@ -11,16 +11,21 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function myAdminProfile(){
+        $country = Countries::orderBy('name', 'asc')->get();
+        return view('Admin.admin_view', compact('country'));
+    }
     //AÑADIR UNIVERSIDAD
     public function addUniversity(Request $request){
         $newUniversity = Universities::create([
             'name' => $request->u_name,
             'color' => $request->u_color,
             'abbreviation' => $request->u_abbr,
-            'country' => $request->country
+            'country_id' => $request->country
         ]);
         if($newUniversity){
-            return view('Admin.success_view');
+            $request->session()->flash('uStored', true);
+            return redirect()->route('adminAccess');
         }else{
             return view('Admin.mistake_view');
         }
@@ -32,8 +37,9 @@ class AdminController extends Controller
             'name' => $request->sub_name,
         ]);
         if($newSubject){
-            return view('Admin.success_view');
-        }else{
+            $request->session()->flash('subStored', true);
+            return redirect()->route('adminAccess');
+            }else{
             return view('Admin.mistake_view');
         }
     }
@@ -44,7 +50,8 @@ class AdminController extends Controller
             'name' => $request->fac_name,
         ]);
         if($newFaculty){
-            return view('Admin.success_view');
+            $request->session()->flash('facStored', true);
+            return redirect()->route('adminAccess');
         }else{
             return view('Admin.mistake_view');
         }
@@ -56,7 +63,8 @@ class AdminController extends Controller
             'name' => $request->car_name,
         ]);
         if($newCareer){
-            return view('Admin.success_view');
+            $request->session()->flash('cStored', true);
+            return redirect()->route('adminAccess');
         }else{
             return view('Admin.mistake_view');
         }
@@ -68,7 +76,8 @@ class AdminController extends Controller
             'name' => $request->country_name,
             ]);
         if($newCountry){
-            return view('Admin.success_view');
+            $request->session()->flash('counStored', true);
+            return redirect()->route('adminAccess');
         }else{
             return view('Admin.mistake_view');
         }
