@@ -23,9 +23,9 @@ class Users extends Model
 
     public function university()
     {
-        return $this->hasOne(Universities::class);
+        return $this->hasOne('App\Models\Universities', 'id', 'university_id');
     }
-    public function scores(){
-        return $this->hasMany(Scores::class);
+    public function career(){
+        return $this->hasOne('App\Models\Careers', 'id', 'career_id');
     }
 }

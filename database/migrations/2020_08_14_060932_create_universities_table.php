@@ -19,6 +19,7 @@ class CreateUniversitiesTable extends Migration
             $table->text('color');
             $table->integer('country_id');
             $table->text('abbreviation');
+            $table->text('logo');
             $table->timestamps();
         });
     }

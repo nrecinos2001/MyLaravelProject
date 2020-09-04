@@ -17,7 +17,7 @@
             <p>Registrate</p>
         </h1>
         
-        <form action="/singup/partTwo" method="POST" class="py-5">
+        <form action="/singup/partTwo" method="POST" class="py-5" enctype="multipart/form-data">
             @csrf
             <div class="container grid grid-cols-1 lg:grid-cols-2">
                 <input required type="text" placeholder="Ingresa tu nombre" name="name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">

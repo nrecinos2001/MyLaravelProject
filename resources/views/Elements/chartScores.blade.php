@@ -1,20 +1,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
-@foreach ($scores as $score)
-@for ($i = 0; $i < 10; $i++)
-
+@for ($i = 0; $i < $higher; $i++)
 <div class="w-full mt-5">
     <canvas id="myChart_{{$i}}" class="mx-auto">    </canvas>
 </div>
+@foreach ($scores as $score)
 <script>
     var ctx{{$i}} = document.getElementById('myChart_{{$i}}').getContext('2d');
     var myChart{{$i}} = new Chart(ctx{{$i}}, {
-    type: 'bar',
-    data: {
-        labels: ['{{$score->subject_id}}',],
+        type: 'bar',
+        
+        data: {
+            labels: [
+                @if($score->cicle == $i+1)
+                    '{{$score->subject->name}}', '{{$score->subject->name}}'
+                @endif
+                ],
         datasets: [{
             label: 'Ciclo {{$score->cicle}}',
-            data: [{{$score->score}}],
+            data: [@if($score->cicle == ($i+1)){{$score->score}}, {{$score->score}}@endif],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.60)',
                 'rgba(54, 162, 235, 0.60)',
@@ -45,5 +49,5 @@
     }
 });
 </script>
-@endfor
 @endforeach
+@endfor

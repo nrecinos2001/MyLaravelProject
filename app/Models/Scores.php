@@ -13,4 +13,7 @@ class Scores extends Model
         'UV',
         'cicle'
     ];
+    public function subject(){
+        return $this->hasOne('App\Models\Subjects', 'id', 'subject_id');
+    }
 }

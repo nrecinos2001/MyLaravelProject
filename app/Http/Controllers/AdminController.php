@@ -8,6 +8,7 @@ use App\Models\Careers;
 use App\Models\Faculties;
 use App\Models\Countries;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -17,11 +18,13 @@ class AdminController extends Controller
     }
     //AÑADIR UNIVERSIDAD
     public function addUniversity(Request $request){
+        $logo = basename(Storage::put('Universities', $request->logoU));
         $newUniversity = Universities::create([
             'name' => $request->u_name,
             'color' => $request->u_color,
             'abbreviation' => $request->u_abbr,
-            'country_id' => $request->country
+            'country_id' => $request->country,
+            'logo' => $logo
         ]);
         if($newUniversity){
             $request->session()->flash('uStored', true);

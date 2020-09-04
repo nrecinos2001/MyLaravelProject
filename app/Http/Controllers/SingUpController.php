@@ -8,6 +8,7 @@ use App\Models\Universities;
 use App\Models\Countries;
 use App\Models\Careers;
 use App\Models\Faculties;
+use Illuminate\Support\Facades\Storage;
 
 class SingUpController extends Controller
 {
@@ -19,6 +20,8 @@ class SingUpController extends Controller
         return view('welcome_views.singup', compact('careers', 'faculties','countries', 'universities'));
     }
     public function singUpTwo(Request $request){
+        $image = basename(Storage::put('profile', $request->profilepic));
+        
         $newUser = Users::create([
             'id_student' => $request->student_id,
             'name' => $request->name,
@@ -31,6 +34,7 @@ class SingUpController extends Controller
             'faculty_id' => $request->faculty,
             'career_id' => $request->career,
             'username' => $request->username,
+            'image' => $image
         ]);
         return view('welcome_views.singup2', ['name'=>$request->name]);
     }

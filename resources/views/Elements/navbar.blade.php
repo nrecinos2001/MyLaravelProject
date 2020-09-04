@@ -13,8 +13,12 @@
         </form>
     </div> --}}
     <div class="lg:mr-0 lg:w-auto my-auto py-auto sm:w-full">
-        <a href="/profile/me" class="flex">
-            <img src="/images/Profile_Pics/nrecinos.jpg" alt="Profile Pic" class="rounded-full w-20 h-20 mx-auto">
+        <a href="{{route('myProfile')}}" class="flex">
+            @if (!is_null($user->image))
+                <img src="{{asset("storage/profile/{$user->image}")}}" alt="Profile Pic" class="rounded-full w-20 h-20 mx-auto">                    
+            @else
+                <img src="{{asset("storage/profile/defaultprofpic.jpg")}}" alt="Profile Pic" class="rounded-full w-20 h-20 mx-auto">                    
+            @endif
             <p class="lg:mx-1 my-auto px-auto mx-auto py-auto text-white">
                 @foreach ($users as $user)
                     {{$user->name}} {{$user->lastname}}

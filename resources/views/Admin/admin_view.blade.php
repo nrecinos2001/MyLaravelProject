@@ -23,34 +23,81 @@
     </div>
 </div>
 <div class="lg:w-3/4 mx-auto sm:w-full text-center">
+    {{-- Notificaciones --}}
+    {{-- Universidad --}}
+    @if (session('uStored'))
+        <br>
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Universidad almacenada con éxito!
+        </div>
+        <br>
+    @endif
+    {{-- Materia --}}
+    @if (session('subStored'))
+        <br>
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Materia almacenada con éxito!
+        </div>
+        <br>
+    @endif
+    {{-- Facultad --}}
+    @if (session('facStored'))
+        <br>
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Facultad almacenada con éxito!
+        </div>
+        <br>
+    @endif
+    {{-- Carreras --}}
+    @if (session('cStored'))
+        <br>
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Carrera almacenada con éxito!
+        </div>
+        <br>
+    @endif
+    {{-- Países --}}
+    @if (session('counStored'))
+        <br>
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡País almacenado con éxito!
+        </div>
+        <br>
+    @endif
+
 
     {{--Añadir universidad --}}
     <button class="mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5" onclick="showUadd()">
         Añadir universidad
     </button>
     <br>
-    @if (session('uStored'))
-        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
-            ¡Universidad almacenada con éxito!
-        </div>
-        <br>
-    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="universities">
-        <form action="/admin/add/University/" method="POST">
+        <form action="/admin/add/University/" method="POST" enctype="multipart/form-data">
             @csrf
-            <p>Ingresar el nombre de la universidad</p>
-            <input type="text" name="u_name" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
-            <p>Ingresar el color de la universidad</p>
-            <input type="text" name="u_color" class="border rounded w-1/2 text-center h-10" placeholder="Según TailWindCSS">
-            <p>Ingresar las siglas de la universidad</p>
-            <input type="text" name="u_abbr" class="border rounded w-1/2 text-center h-10" placeholder="Siglas">
-            <p>Seleccionar el país</p>
-            <select name="country" id="" class="border rounded w-1/2 h-10">
+            <label for="name">Ingresar el nombre de la universidad</label>
+            <br>
+            <input type="text" name="u_name" id="name" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
+            <br>
+            <label for="color">Ingresar el color de la universidad</label>
+            <br>
+            <input type="text" name="u_color" id="color" class="border rounded w-1/2 text-center h-10" placeholder="Según TailWindCSS">
+            <br>
+            <label for="abb">Ingresar las siglas de la universidad</label>
+            <br>
+            <input type="text" name="u_abbr" id="abb" class="border rounded w-1/2 text-center h-10" placeholder="Siglas">
+            <br>
+            <label for="countries">Seleccionar el país</label>
+            <br>
+            <select name="country" id="countries" class="border rounded w-1/2 h-10">
                 <option selected disabled>-Seleccione un país-</option>
                 @foreach ($country as $coun)
                 <option value='{{$coun->id}}'>{{$coun->name}}</option>
                 @endforeach
             </select>
+            <br>
+            <label for="logo">Seleccionar logo para la universidad</label>
+            <br>
+            <input type="file" name="logoU" accept="image/*" id="logo" class="border rounded w-1/2 text-center h-10">
             <br>
             <button class="mx-auto bg-blue-400 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5">
                 Agregar
@@ -63,17 +110,12 @@
         Añadir Materia
     </button>
     <br>
-    @if (session('subStored'))
-        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
-            ¡Materia almacenada con éxito!
-        </div>
-        <br>
-    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="subjects">
         <form action="/admin/add/Subject/" method="POST">
             @csrf
-            <p>Ingresar el nombre de la materia</p>
-            <input type="text" name="sub_name" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
+            <label for="sub">Ingresar el nombre de la materia</label>
+            <br>
+            <input type="text" name="sub_name" id="sub" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
             <br>
             <button class="mx-auto bg-blue-400 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5">
                 Agregar
@@ -86,17 +128,12 @@
         Añadir facultad
     </button>
     <br>
-    @if (session('facStored'))
-        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
-            ¡Facultad almacenada con éxito!
-        </div>
-        <br>
-    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="faculty">
         <form action="/admin/add/Faculty/" method="POST">
             @csrf
-            <p>Ingresar el nombre de la facultad</p>
-            <input type="text" name="fac_name" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
+            <label for="fac">Ingresar el nombre de la facultad</label>
+            <br>
+            <input type="text" name="fac_name" id="fac" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
             <br>
             <button class="mx-auto bg-blue-400 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5">
                 Agregar
@@ -109,17 +146,12 @@
         Añadir Carrera
     </button>
     <br>
-    @if (session('cStored'))
-        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
-            ¡Carrera almacenada con éxito!
-        </div>
-        <br>
-    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="career">
         <form action="/admin/add/Career/" method="POST">
             @csrf
-            <p>Ingresar el nombre de la carrera</p>
-            <input type="text" name="car_name" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
+            <label for="career">Ingresar el nombre de la carrera</label>
+            <br>
+            <input type="text" name="car_name" id="career" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
             <br>
             <button class="mx-auto bg-blue-400 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5">
                 Agregar
@@ -131,17 +163,12 @@
         Añadir País
     </button>
     <br>
-    @if (session('counStored'))
-        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
-            ¡País almacenado con éxito!
-        </div>
-        <br>
-    @endif
     <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="country">
         <form action="/admin/add/Country/" method="POST">
             @csrf
-            <p>Ingresar el nombre del país</p>
-            <input type="text" name="country_name" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
+            <label for="country">Ingresar el nombre del país</label>
+            <br>
+            <input type="text" name="country_name" id="country" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
             <br>
             <button class="mx-auto bg-blue-400 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5">
                 Agregar
