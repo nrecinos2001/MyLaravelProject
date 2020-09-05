@@ -32,6 +32,14 @@
         </div>
         <br>
     @endif
+    {{-- Países --}}
+    @if (session('sMediaStored'))
+        <br>
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Red social almacenada con éxito!
+        </div>
+        <br>
+    @endif
     {{-- Materia --}}
     @if (session('subStored'))
         <br>
@@ -98,6 +106,27 @@
             <label for="logo">Seleccionar logo para la universidad</label>
             <br>
             <input type="file" name="logoU" accept="image/*" id="logo" class="border rounded w-1/2 text-center h-10">
+            <br>
+            <button class="mx-auto bg-blue-400 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5">
+                Agregar
+            </button>
+        </form>
+    </div>
+     {{--Añadir Red social --}}
+     <button class="mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white mb-5" onclick="showSMadd()">
+        Añadir red social
+    </button>
+    <br>
+    <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="socialmedia">
+        <form action="/admin/add/SocialMedia/" method="POST" enctype="multipart/form-data">
+            @csrf
+            <label for="smname">Ingresar el nombre de la red social</label>
+            <br>
+            <input type="text" name="socialName" id="smname" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
+            <br>
+            <label for="smphoto">Seleccionar logo de la red social</label>
+            <br>
+            <input type="file" name="socialPhoto" accept="image/*" id="smphoto" class="border rounded w-1/2 text-center h-10">
             <br>
             <button class="mx-auto bg-blue-400 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5">
                 Agregar
@@ -175,6 +204,8 @@
             </button>
         </form>
     </div>
+    
+   
 </div>
 
 
@@ -193,6 +224,9 @@
     }
     function showCOadd() {
         document.getElementById('country').classList.toggle("hiddenE");
+    }
+    function showSMadd() {
+        document.getElementById('socialmedia').classList.toggle("hiddenE");
     }
 </script>
 </body>

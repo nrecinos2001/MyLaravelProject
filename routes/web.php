@@ -23,6 +23,7 @@ Route::prefix('singup')->group(function(){
         Route::post('/', [ProfileController::class, 'myProfile'])->name('myProfile');
         Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myScores');
         Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
+        Route::get('/update', [ProfileController::class, 'updateData'])->name('update');
         //Añadir notas del usuario
         Route::post('/myScores/adding', [ScoresAddingController::class, 'adding'])->name('adding');
     });
@@ -44,6 +45,7 @@ Route::prefix('admin/add')->group(function() {
     Route::post('Faculty', [AdminController::class, 'addFaculty']);
     Route::post('Career', [AdminController::class, 'addCareer']);
     Route::post('Country', [AdminController::class, 'addCountry']);
+    Route::post('SocialMedia', [AdminController::class, 'addSocialMedia']);
 });
 
 

@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class Users extends Model
 {
@@ -27,5 +29,11 @@ class Users extends Model
     }
     public function career(){
         return $this->hasOne('App\Models\Careers', 'id', 'career_id');
+    }
+    public function faculty(){
+        return $this->hasOne('App\Models\Faculties', 'id', 'faculty_id');
+    }
+    public function country(){
+        return $this->hasOne('App\Models\Countries', 'id', 'country_id');
     }
 }

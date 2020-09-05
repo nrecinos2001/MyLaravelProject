@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <style>
+        .bw-social{
+            filter: grayscale(85%);
+        }
+    </style>
     <title>Me!</title>
 </head>
 <body>
@@ -14,10 +20,7 @@
             <img src="{{asset("storage/Universities/{$user->university->logo}")}}" alt="" class="lg:w-auto h-64 sm:w-full mx-auto">
         </div>
         <div class="lg:w-1/2 rounded my-auto sm:w-full text-center">
-            {{-- @foreach ($users->university as $university)
-                
-            @endforeach --}}
-            <p class="text-base mx-5">{{$user->career->name}} - {{$user->university->name}}</p>
+            <p class="text-base mx-5">{{$user->career->name}} | {{$user->faculty->name}} <br> {{$user->university->name}}</p>
             <ul class="text-base mx-5 italic mt-3">
                 <li class="mx-auto"> <a href="/profile/me/myScores">Ver mis notas. </a></li>
             </ul>
@@ -33,6 +36,9 @@
                 {{$user->name}} {{$user->lastname}}
             </p>
             <p class="text-sm mx-5">{{$user->username}}</p>
+            <a href="{{route('update')}}">
+                <p class="text-sm mx-5">Actualizar información personal</p>
+            </a>
         </div>
     </div>
     <div class="lg:w-1/2 mx-auto my-auto sm:w-full">

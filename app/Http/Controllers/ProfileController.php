@@ -11,6 +11,9 @@ use App\Models\Careers;
 use App\Models\Faculties;
 use App\Models\Subjects;
 use App\Models\Scores;
+use App\Models\User as ModelsUser;
+use App\User as AppUser;
+use Illuminate\Foundation\Auth\User;
 
 class ProfileController extends Controller
 {
@@ -60,11 +63,10 @@ class ProfileController extends Controller
             $users = Users::select('*')->where('id_student', '00083120'
             )->with('university','career'
             )->get();
-            //dd($users);
             return view('Profile.profile',  compact('users'), ['pro'=>$progress]);
             }
         }
-        /* if(($user == $loginData['username']) && ($password == $loginData['password'])){*/
+
     
     public function myScores(Request $request){
         $users = Users::select('*')->where('id_student', '00083120')->get();
@@ -94,5 +96,17 @@ class ProfileController extends Controller
         return view('Profile.adding', compact('subjects', 'users'), ['nOfSub'=>$nos, 'cicle'=>$cicle]);
     }
     
+    public function updateData(){
+        $users = Users::select('*')->where('id_student', '00083120')->with('university','career'
+        )->get();
+        $countries = Countries::select('id', 'name')->get();
+        $universities = Universities::select('id', 'name')->get();
+        $careers = Careers::select('id', 'name')->get();
+        $faculties = Faculties::select('id', 'name')->get();
+            
+        return view('Profile.updateProfile', compact(
+            'users', 'countries', 'universities', 'careers', 'faculties'
+        ));
+    }
     
 }

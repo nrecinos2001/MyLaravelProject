@@ -7,6 +7,7 @@ use App\Models\Subjects;
 use App\Models\Careers;
 use App\Models\Faculties;
 use App\Models\Countries;
+use App\Models\SocialMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,6 +19,14 @@ class AdminController extends Controller
     }
     //AÑADIR UNIVERSIDAD
     public function addUniversity(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:191',
+            'color' => 'required|string|max:30',
+            'abbreviation' => 'required|string|max:30',
+            'country_id' => 'required|integer',
+            'logo' => 'required|image|max:5000'
+        ]);
+        
         $logo = basename(Storage::put('Universities', $request->logoU));
         $newUniversity = Universities::create([
             'name' => $request->u_name,
@@ -80,6 +89,21 @@ class AdminController extends Controller
             ]);
         if($newCountry){
             $request->session()->flash('counStored', true);
+            return redirect()->route('adminAccess');
+        }else{
+            return view('Admin.mistake_view');
+        }
+    }
+    
+    //AÑADIR RED SOCIAL
+    public function addSocialMedia(Request $request){
+        $photo = basename(Storage::put('SocialPhotos', $request->socialPhoto));
+        $newSocialMedia = SocialMedia::create([
+            'socialName' => $request->socialName,
+            'socialPhoto' => $photo
+        ]);
+        if($newSocialMedia){
+            $request->session()->flash('sMediaStored', true);
             return redirect()->route('adminAccess');
         }else{
             return view('Admin.mistake_view');

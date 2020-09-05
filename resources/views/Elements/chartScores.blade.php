@@ -5,6 +5,7 @@
     <canvas id="myChart_{{$i}}" class="mx-auto">    </canvas>
 </div>
 @foreach ($scores as $score)
+@if($score->cicle == $i+1)
 <script>
     var ctx{{$i}} = document.getElementById('myChart_{{$i}}').getContext('2d');
     var myChart{{$i}} = new Chart(ctx{{$i}}, {
@@ -12,17 +13,15 @@
         
         data: {
             labels: [
-                @if($score->cicle == $i+1)
-                    '{{$score->subject->name}}', '{{$score->subject->name}}'
-                @endif
+                    '{{$score->subject->name}}'
                 ],
-        datasets: [{
-            label: 'Ciclo {{$score->cicle}}',
-            data: [@if($score->cicle == ($i+1)){{$score->score}}, {{$score->score}}@endif],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.60)',
-                'rgba(54, 162, 235, 0.60)',
-                'rgba(255, 206, 86, 0.60)',
+                datasets: [{
+                    label: 'Ciclo {{$score->cicle}}',
+                    data: [{{$score->score}}, {{$score->score}}],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.60)',
+                        'rgba(54, 162, 235, 0.60)',
+                        'rgba(255, 206, 86, 0.60)',
                 'rgba(75, 192, 192, 0.60)',
                 'rgba(153, 102, 255, 0.60)',
                 'rgba(255, 159, 64, 0.60)'
@@ -49,5 +48,6 @@
     }
 });
 </script>
+@endif
 @endforeach
 @endfor
