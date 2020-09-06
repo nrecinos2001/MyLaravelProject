@@ -11,6 +11,8 @@ use App\Models\Careers;
 use App\Models\Faculties;
 use App\Models\Subjects;
 use App\Models\Scores;
+use App\Models\SocialMedia;
+use App\Models\SocialUser;
 use App\Models\User as ModelsUser;
 use App\User as AppUser;
 use Illuminate\Foundation\Auth\User;
@@ -26,10 +28,6 @@ class ProfileController extends Controller
     //Profile
     public function myProfile(Request $request){
         $countries = Countries::select('*')->orderBy('name', 'asc')->get();
-        $loginData = [
-            'username' => 'admin',
-            'password' => 'SohCahToa'
-        ];
         $scores = Scores::select('*')->where('student_id', '00083120')->get();
         $uvAll = 0;
         $sumAll = 0;
@@ -57,14 +55,10 @@ class ProfileController extends Controller
         ];
         
         $usersAll = Users::get('username', 'password');
-        if ($loginData['username'] == $request->user && $loginData['password'] == $request->password) {
-            return redirect()->route('adminAccess');
-        }else{
             $users = Users::select('*')->where('id_student', '00083120'
             )->with('university','career'
             )->get();
             return view('Profile.profile',  compact('users'), ['pro'=>$progress]);
-            }
         }
 
     
@@ -103,10 +97,21 @@ class ProfileController extends Controller
         $universities = Universities::select('id', 'name')->get();
         $careers = Careers::select('id', 'name')->get();
         $faculties = Faculties::select('id', 'name')->get();
-            
+        $socialmedia = SocialMedia::select('id', 'socialName')->get();
         return view('Profile.updateProfile', compact(
-            'users', 'countries', 'universities', 'careers', 'faculties'
+            'users', 'countries', 'universities', 'careers', 'faculties', 'socialmedia'
         ));
     }
     
+    public function addSocialU(Request $request){
+        $newLink = SocialUser::create([
+            'user_id' => $request->user_id,
+            'socialmedia_id' => $request->sm_id,
+            'link' => $request->link
+        ]);
+
+        if($newLink){
+            return redirect()->route('update');
+        }
+    }
 }

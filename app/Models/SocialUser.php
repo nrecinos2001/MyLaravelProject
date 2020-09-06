@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class SocialUser extends Model
 {
-    public $fillable = [
-        'link'
+    protected $table = 'socialuser';
+    protected $fillable = [
+        'user_id', 'socialmedia_id', 'link'
     ];
 
     public function socialMedia(){
-        return $this-> hasMany('App\Models\SocialMedia', 'id', 'socialmedia_id');
+        return $this-> hasOne('App\Models\SocialMedia', 'id', 'socialmedia_id');
     }
 }

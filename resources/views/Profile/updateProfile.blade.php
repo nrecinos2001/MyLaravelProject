@@ -76,16 +76,18 @@
         
         <div class="text-center">
             <strong class="my-2">Agregar redes sociales</strong>
-            <form action="">
+            <form action="{{route('addSM_user')}}" method="POST">
+                @csrf
+                <input type="hidden" value="00083120" name="user_id">
                 <label for="socialmediaselect">Seleccione la red social</label>
-                <select name="socialmedia" id="socialmediaselect" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    {{-- @foreach ($socialmedia as $social) --}}
-                        <option value="1">Facebook</option>
-                    {{-- @endforeach --}}
+                <select name="sm_id" id="socialmediaselect" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                    @foreach ($socialmedia as $social)
+                        <option value="{{$social->id}}">{{$social->socialName}}</option>
+                    @endforeach
                 </select>
                 <br>
                 <label for="link">Ingresar el enlace de tu perfil</label>
-                <input type="text" id="link" name="linkforusermedia" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                <input type="text" id="link" name="link" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <br>
                 <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
                     Agregar
@@ -98,9 +100,9 @@
             <form action="">
                 <label for="socialmediaselect">Seleccione la red social</label>
                 <select name="socialmedia" id="socialmediaselect" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    {{-- @foreach ($socialmedia as $social) --}}
-                        <option value="1">Facebook</option>
-                    {{-- @endforeach --}}
+                    @foreach ($socialmedia as $social)
+                        <option value="{{$social->id}}">{{$social->socialName}}</option>
+                    @endforeach
                 </select>
                 <br>
                 <label for="link">Ingresar el enlace de tu perfil</label>

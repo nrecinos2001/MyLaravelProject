@@ -39,6 +39,11 @@
             <a href="{{route('update')}}">
                 <p class="text-sm mx-5">Actualizar información personal</p>
             </a>
+            @if ($user->isadmin == 'y')
+                <a href="{{route('adminAccess')}}">
+                    <i class="text-sm">Admin Panel</i>
+                </a> 
+            @endif
         </div>
     </div>
     <div class="lg:w-1/2 mx-auto my-auto sm:w-full">

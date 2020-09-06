@@ -11,12 +11,11 @@ use App\Http\Controllers\SingUpController;
 
 //Welcome rutes and related with profile
 
-Route::get('/', [IndexController::class, 'welcome'])->name('inicio');
+Route::get('/', [IndexController::class, 'welcome'])->name('home');
 Route::get('login', [ProfileController::class, 'loginUser'])->name('login');
 Route::prefix('singup')->group(function(){
     Route::get('partOne', [SingUpController::class, 'singUp'])->name('singUp');
     Route::post('partTwo', [SingUpController::class, 'singUpTwo'])->name('singUp2');
-    Route::post('partThree', [SingUpController::class], 'singUpThree')->name('singUp3');
 });
 //Route::middleware('auth')->group(function(){
     Route::prefix('profile/me')->group(function(){
@@ -24,6 +23,7 @@ Route::prefix('singup')->group(function(){
         Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myScores');
         Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
         Route::get('/update', [ProfileController::class, 'updateData'])->name('update');
+        Route::post('/update/addSM_user', [ProfileController::class, 'addSocialU'])->name('addSM_user');
         //Añadir notas del usuario
         Route::post('/myScores/adding', [ScoresAddingController::class, 'adding'])->name('adding');
     });
@@ -52,3 +52,7 @@ Route::prefix('admin/add')->group(function() {
 
 
 
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');

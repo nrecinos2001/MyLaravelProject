@@ -20,10 +20,16 @@
                 <img src="{{asset("storage/profile/defaultprofpic.jpg")}}" alt="Profile Pic" class="rounded-full w-20 h-20 mx-auto">                    
             @endif
             <p class="lg:mx-1 my-auto px-auto mx-auto py-auto text-white">
-                @foreach ($users as $user)
                     {{$user->name}} {{$user->lastname}}
-                @endforeach
             </p>
         </a>
+    </div>
+    <div>    
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+            <button class="bg-white lg:w-auto lg:mx-1 my-2 lg:px-2 py-2 hover:bg-purple-200 rounded w-1/4 mx-1">
+                Log out!
+            </button>
+        </form> 
     </div>
 </div>

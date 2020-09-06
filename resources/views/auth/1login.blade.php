@@ -14,9 +14,9 @@
         <h1 class="font-bold text-xl">
             <a href="/">My University Progress</a>
         </h1>
-        <form action="/profile/me" class="py-5" method="POST">
+        <form action="{{ route('login') }}" class="py-5" method="POST">
             @csrf
-            <input type="text" placeholder="Usuario" name="user" class="border border-purple-300 my-3 py-1 px-1 rounded">
+            <input type="email" placeholder="Correo electrónico" name="user" class="border border-purple-300 my-3 py-1 px-1 rounded">
             <br>
             <input type="password" placeholder="Contraseña" name="password" class="border border-purple-300 my-3 py-1 px-1 rounded">
             <br>
@@ -24,7 +24,9 @@
         </form>
         <a href=""><p class="hover:underline">¿Olvidaste tu contraseña?</p></a>
         |
-    <a href="/singup/partOne" class="mb-4"><p class="hover:underline">Registrate</p></a>
+        <a class="mb-4" href="{{ route('register') }}">
+            <p class="hover:underline">Registrate</p>
+        </a>
     </div>
 </body>
 </html>

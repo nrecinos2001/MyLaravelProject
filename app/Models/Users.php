@@ -2,12 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticable;
+use Illuminate\Notifications\Notifiable;
 
-use Illuminate\Database\Eloquent\Model;
-
-
-class Users extends Model
+class Users extends Authenticable
 {
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignamble.
+     * 
+     * @var array
+     * */
     protected $fillable = [
         'id_student',
         'name',
@@ -22,7 +29,11 @@ class Users extends Model
         'country_id',
         'image'
     ];
-
+     /**
+      * The attributes that should be hidden for arrays
+      *
+      * @var array
+      */
     public function university()
     {
         return $this->hasOne('App\Models\Universities', 'id', 'university_id');
