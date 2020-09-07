@@ -12,14 +12,14 @@ use App\Http\Controllers\SingUpController;
 //Welcome rutes and related with profile
 
 Route::get('/', [IndexController::class, 'welcome'])->name('home');
-Route::get('login', [ProfileController::class, 'loginUser'])->name('login');
+Route::get('loginView', [ProfileController::class, 'loginUser'])->name('loginView');
 Route::prefix('singup')->group(function(){
     Route::get('partOne', [SingUpController::class, 'singUp'])->name('singUp');
-    Route::post('partTwo', [SingUpController::class, 'singUpTwo'])->name('singUp2');
+    Route::post('partTwo', [SingUpController::class, 'singUpTwo'])->name('singUp2'); 
 });
 //Route::middleware('auth')->group(function(){
     Route::prefix('profile/me')->group(function(){
-        Route::post('/', [ProfileController::class, 'myProfile'])->name('myProfile');
+        Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
         Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myScores');
         Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
         Route::get('/update', [ProfileController::class, 'updateData'])->name('update');

@@ -36,6 +36,7 @@
                 {{$user->name}} {{$user->lastname}}
             </p>
             <p class="text-sm mx-5">{{$user->username}}</p>
+            @include('Elements.socialMediaBar')
             <a href="{{route('update')}}">
                 <p class="text-sm mx-5">Actualizar información personal</p>
             </a>

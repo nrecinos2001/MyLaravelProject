@@ -22,13 +22,16 @@ class ProfileController extends Controller
     //Login & Sing up
     public function loginUser(){
         
-        return view('welcome_views.login');
+        return view('welcome_views.1login');
     }
 
     //Profile
     public function myProfile(Request $request){
         $countries = Countries::select('*')->orderBy('name', 'asc')->get();
         $scores = Scores::select('*')->where('student_id', '00083120')->get();
+        $userMedia = SocialUser::select('user_id', 'socialmedia_id', 'link')
+        ->where('user_id', 1)->with('socialMedia')
+        ->get();
         $uvAll = 0;
         $sumAll = 0;
         foreach ($scores as $score) {
@@ -58,7 +61,7 @@ class ProfileController extends Controller
             $users = Users::select('*')->where('id_student', '00083120'
             )->with('university','career'
             )->get();
-            return view('Profile.profile',  compact('users'), ['pro'=>$progress]);
+            return view('Profile.profile',  compact('users', 'userMedia'), ['pro'=>$progress]);
         }
 
     
@@ -66,8 +69,9 @@ class ProfileController extends Controller
         $users = Users::select('*')->where('id_student', '00083120')->get();
         $scores = Scores::select('*')->where('student_id', '00083120')->with('subject')->orderBy('cicle', 'asc')->get();
         $higher = DB::table('scores')->where('student_id', '00083120')->max('cicle');
-        
-        for ($i=0; $i < $higher; $i++) { 
+
+        //$socialMedia = SocialMedia::select('id', 'socialName',)
+        /* for ($i=0; $i < $higher; $i++) { 
             echo "Ciclo " . ($i+1) . "<br>";
             foreach($scores as $sco){
                     if($sco->cicle == $i+1){
@@ -75,7 +79,7 @@ class ProfileController extends Controller
                     echo $sco->score . "<br>";} 
             }
 
-        }
+        } */
  
         //dd($scores);
         return view('Profile.myScores', compact('users', 'scores'), ['higher'=>$higher]);

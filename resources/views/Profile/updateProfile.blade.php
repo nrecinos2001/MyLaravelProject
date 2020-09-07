@@ -78,7 +78,7 @@
             <strong class="my-2">Agregar redes sociales</strong>
             <form action="{{route('addSM_user')}}" method="POST">
                 @csrf
-                <input type="hidden" value="00083120" name="user_id">
+                <input type="hidden" value="1" name="user_id">
                 <label for="socialmediaselect">Seleccione la red social</label>
                 <select name="sm_id" id="socialmediaselect" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     @foreach ($socialmedia as $social)
