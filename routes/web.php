@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScoresAddingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SingUpController;
+use App\Http\Controllers\UpdateUserInfoController;
+use App\Models\Goals;
 
 //Welcome rutes and related with profile
 
@@ -22,7 +25,12 @@ Route::prefix('singup')->group(function(){
         Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
         Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myScores');
         Route::get('/myScores/add', [ProfileController::class, 'adding'])->name('add');
+        Route::get('/myGoals', [GoalsController::class, 'show'])->name('showGoals');
+        Route::get('/myGoals/add', [GoalsController::class, 'adding'])->name('showGoalsAdding');
+        Route::post('/myGoals/adding', [GoalsController::class, 'store'])->name('storeGoal');
+        Route::post('/myGoals/updating', [GoalsController::class, 'update'])->name('updatingGoal');
         Route::get('/update', [ProfileController::class, 'updateData'])->name('update');
+        Route::get('/updating', [UpdateUserInfoController::class, 'updatingData'])->name('updatingUser');
         Route::post('/update/addSM_user', [ProfileController::class, 'addSocialU'])->name('addSM_user');
         //Añadir notas del usuario
         Route::post('/myScores/adding', [ScoresAddingController::class, 'adding'])->name('adding');

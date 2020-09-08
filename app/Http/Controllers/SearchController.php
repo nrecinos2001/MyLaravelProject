@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function results(){
-        $search = "nestor_recinos@mup.uca";
+    public function results(Request $request){
+        $search = $request->hoal;
         $people = [
             $search => 'Nestor Recinos',
         ];

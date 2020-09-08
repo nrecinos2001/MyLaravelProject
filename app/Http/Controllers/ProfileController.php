@@ -70,18 +70,6 @@ class ProfileController extends Controller
         $scores = Scores::select('*')->where('student_id', '00083120')->with('subject')->orderBy('cicle', 'asc')->get();
         $higher = DB::table('scores')->where('student_id', '00083120')->max('cicle');
 
-        //$socialMedia = SocialMedia::select('id', 'socialName',)
-        /* for ($i=0; $i < $higher; $i++) { 
-            echo "Ciclo " . ($i+1) . "<br>";
-            foreach($scores as $sco){
-                    if($sco->cicle == $i+1){
-                    echo $sco->subject->name . "---";
-                    echo $sco->score . "<br>";} 
-            }
-
-        } */
- 
-        //dd($scores);
         return view('Profile.myScores', compact('users', 'scores'), ['higher'=>$higher]);
     }
 

@@ -23,6 +23,7 @@
             <p class="text-base mx-5">{{$user->career->name}} | {{$user->faculty->name}} <br> {{$user->university->name}}</p>
             <ul class="text-base mx-5 italic mt-3">
                 <li class="mx-auto"> <a href="/profile/me/myScores">Ver mis notas. </a></li>
+                <li class="mx-auto"> <a href="{{route('showGoals')}}">Ver mis propósitos. </a></li>
             </ul>
         </div>
         <input type="hidden" name="idUs" value"{{$user->id_student}}">

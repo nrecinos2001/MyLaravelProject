@@ -27,7 +27,8 @@ class Users extends Authenticable
         'career_id',
         'faculty_id',
         'country_id',
-        'image'
+        'image',
+        'isadmin'
     ];
      /**
       * The attributes that should be hidden for arrays

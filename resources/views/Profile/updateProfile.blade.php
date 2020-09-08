@@ -11,61 +11,72 @@
     @foreach ($users as $user)
     @include('Elements.navbar')
     <div class=" container lg:grid lg:grid-cols-2">
-        <form action="" method="POST">
+        <form action="{{route('updatingUser')}}" method="POST">
+            @csrf
+            <input type="hidden" value="{{$user->id}}" name="id_user">
             <div class="w-1/2 mx-auto grid grid-cols-1 lg:grid-cols-1">
                 <strong class="my-2">Actualizar información</strong>
-                <label for="">Actualizar nombre</label>
-                <input required type="text" placeholder="Ingresa tu nombre" name="name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <label for="">Actualizar apellido</label>
-                <input required type="text" placeholder="Ingresa tu apellido" name="last_name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <label for="">Actualizar Correo</label>
-                <input required type="email" placeholder="Ingresa tu correo electronico" name="email" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <label for="">Actualizar contraseña</label>
-                <input required type="password" placeholder="Ingresa tu contraseña" name="passWord" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <label for="">Actualizar carné</label>
-                <input required type="text" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <label for="">Actualizar país</label>
-                <select required name="country" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    <option selected disabled>Selecciona tu pais</option>
+                {{-- Name --}}
+                <label for="name">Actualizar nombre</label>
+                <input required type="text" id="name" placeholder="Ingresa tu nombre" name="name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->name}}">
+                {{-- Lastname --}}
+                <label for="lastname">Actualizar apellido</label>
+                <input required type="text" id="lastname" placeholder="Ingresa tu apellido" name="last_name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->lastname}}">
+                {{-- Email --}}
+                <label for="email">Actualizar Correo</label>
+                <input required type="email" id="email" placeholder="Ingresa tu correo electronico" name="email" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->email}}">
+                {{-- Password --}}
+                <label for="pasword">Actualizar contraseña</label>
+                <input required type="password" id="password" placeholder="Ingresa tu contraseña" name="passWord" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->password}}">
+                {{-- Carne, Student_id --}}
+                <label for="sId">Actualizar carné</label>
+                <input required type="text" name="sId" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->id_student}}">
+                {{-- Country --}}
+                <label for="country">Actualizar país</label>
+                <select required name="country" id="country" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                    <option selected value="{{$user->country_id}}">No cambiar</option>
                     @foreach ($countries as $country)
                     <option value="{{$country->id}}">{{$country->name}}</option>
                     @endforeach
                 </select>
-                <label for="">Actualizar genero</label>
-                <select required name="gender" id="" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    <option selected disabled>Selecciona tu sexo</option>
+                {{-- Gender --}}
+                <label for="gender">Actualizar genero</label>
+                <select required name="gender" id="gender" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                    <option selected value="{{$user->gender}}">No cambiar</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                     <option value="P">Personalizado</option>
                 </select>
-                <label for="">Actualizar universidad</label>
-                <select required name="university" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    <option selected disabled>Selecciona tu universidad</option>
+                {{-- University --}}
+                <label for="university">Actualizar universidad</label>
+                <select required name="university" id="university" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                    <option selected value="{{$user->university_id}}">No Cambiar</option>
                     @foreach ($universities as $university)
                     <option value="{{$university->id}}">{{$university->name}}</option>
                     @endforeach
                 </select>
-                <label for="">Actualizar carrera</label>
-                <select required name="career" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    <option selected disabled>Selecciona tu carrera</option>
+                {{-- Career --}}
+                <label for="career">Actualizar carrera</label>
+                <select required name="career" id="career" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                    <option selected value="{{$user->career_id}}">No cambiar</option>
                     @foreach ($careers as $career)
                     <option value="{{$career->id}}">{{$career->name}}</option>
                     @endforeach
                 </select>
-                <label for="">Actualizar facultad</label>
-            {{--  --}}
-                <select required name="faculty" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    <option selected disabled>Selecciona tu Facultad</option>
+                {{-- Faculty --}}
+                <label for="faculty">Actualizar facultad</label>
+                <select required name="faculty" id="faculty" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                    <option selected value="{{$user->faculty_id}}">No cambiar</option>
                     @foreach ($faculties as $faculty)
                     <option value="{{$faculty->id}}">{{$faculty->name}}</option>
                     @endforeach
                 </select>
-                <label for="">Actualizar nombre de usuario</label>
                 {{-- Username --}}
-                <input type="text" placeholder="Ingresa tu nombre de usuario" name="username" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <label for="">Actualizar foto de perfil</label>
+                <label for="username">Actualizar nombre de usuario</label>
+                <input type="text" id="username" placeholder="Ingresa tu nombre de usuario" name="username" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->username}}">
                 {{--Profile Picture--}}
-                <input type="file" placeholder="Foto de perfil" name="profilepic" accept="image/*" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                <label for="profpic">Actualizar foto de perfil</label>
+                <input type="file" name="profilepic" id="profpic" accept="image/*" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <br>
                 <button class="w-1/2 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
                     ¡Acualizar!

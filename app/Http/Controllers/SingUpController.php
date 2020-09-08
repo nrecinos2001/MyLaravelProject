@@ -27,7 +27,7 @@ class SingUpController extends Controller
             'email' => 'required|string|max:191',
             'password' => 'required|string|max:191',
             'country_id' => 'required|integer',
-            'gender' => 'required|char|max:1',
+            'gender' => 'required|string|max:1',
             'university_id' => 'required|integer',
             'faculty_id' => 'required|integer',
             'career_id' => 'required|integer',

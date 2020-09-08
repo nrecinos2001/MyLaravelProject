@@ -23,7 +23,7 @@
                 <input required type="text" placeholder="Ingresa tu nombre" name="name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <input required type="text" placeholder="Ingresa tu apellido" name="last_name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <input required type="email" placeholder="Ingresa tu correo electronico" name="email" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                <input required type="password" placeholder="Ingresa tu contraseña" name="passWord" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                <input required type="password" placeholder="Ingresa tu contraseña" name="password" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <input required type="text" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <select required name="country" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     <option selected disabled>Selecciona tu pais</option>

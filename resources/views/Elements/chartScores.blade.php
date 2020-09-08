@@ -10,7 +10,6 @@
     var ctx{{$i}} = document.getElementById('myChart_{{$i}}').getContext('2d');
     var myChart{{$i}} = new Chart(ctx{{$i}}, {
         type: 'bar',
-        
         data: {
             labels: [
                 @foreach ($scores as $scorex)
