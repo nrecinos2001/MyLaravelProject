@@ -24,10 +24,16 @@
             </button>
         </form>
     </div>
-    
+
+    @if($numbers < 1)
     <div class="w-3/4 lg:flex lg:grid lg:grid-cols-2 mx-auto text-center h-auto">
         @include('Elements.chartScores')
     </div>
+    @else
+    <div class="text-center w-1/2 text-purple-500 mx-auto">
+        <p class="italic text-lg">No has agregado ninguna materia</p>
+    </div>
+    @endif
     @endforeach
 </body>
 </html>

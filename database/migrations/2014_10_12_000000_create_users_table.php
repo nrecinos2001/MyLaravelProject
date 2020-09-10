@@ -17,18 +17,19 @@ class CreateUsersTable extends Migration
             'users', 
             function (Blueprint $table) {
                 $table->id();
-                $table->string('id_student')->index();
+                $table->string('id_student')->index()->nullable();
                 $table->string('name');
-                $table->string('lastname');
+                $table->string('lastname')->nullable();
                 $table->string('email')->unique();
                 $table->string('username')->unique()->nullable();
-                $table->string('password');
-                $table->char('gender', 1);
-                $table->integer('university_id')->index();
-                $table->integer('career_id')->index();
-                $table->integer('faculty_id')->index();
-                $table->integer('country_id')->index();
+                $table->string('password')->nullable();
+                $table->char('gender', 1)->nullable();
+                $table->integer('university_id')->index()->nullable();
+                $table->integer('career_id')->index()->nullable();
+                $table->integer('faculty_id')->index()->nullable();
+                $table->integer('country_id')->index()->nullable();
                 $table->string('image')->nullable();
+                $table->rememberToken();
                 $table->timestamps();
         });
     }

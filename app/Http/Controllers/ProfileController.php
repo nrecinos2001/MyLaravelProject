@@ -28,9 +28,9 @@ class ProfileController extends Controller
     //Profile
     public function myProfile(Request $request){
         $countries = Countries::select('*')->orderBy('name', 'asc')->get();
-        $scores = Scores::select('*')->where('student_id', '00083120')->get();
+        $scores = Scores::select('*')->where('id', auth()->id())->get();
         $userMedia = SocialUser::select('user_id', 'socialmedia_id', 'link')
-        ->where('user_id', 1)->with('socialMedia')
+        ->where('user_id', auth()->id())->with('socialMedia')
         ->get();
         $uvAll = 0;
         $sumAll = 0;
@@ -43,11 +43,12 @@ class ProfileController extends Controller
         //Progress of the career
         $done = 4.5;
         $missing = 100-$done;
+
         //CUM
         if($sumAll == 0 && $uvAll == 0){
             $sumAll = 0.01;
             $uvAll = 1;
-        }else
+        }
         $achCum = round(($sumAll/$uvAll),2);
         $missCum = 10 - $achCum;
         $progress = [
@@ -56,21 +57,19 @@ class ProfileController extends Controller
             'CUM_ach' => $achCum,
             'CUM_miss' => $missCum
         ];
-        
-        $usersAll = Users::get('username', 'password');
-            $users = Users::select('*')->where('id_student', '00083120'
+            $users = Users::select('*')->where('id', auth()->id()
             )->with('university','career'
             )->get();
-            return view('Profile.profile',  compact('users', 'userMedia'), ['pro'=>$progress]);
+            return view('Profile.profile',  compact('users', 'userMedia'), ['pro'=>$progress, 'numbers'=>$sumAll]);
         }
 
     
     public function myScores(Request $request){
-        $users = Users::select('*')->where('id_student', '00083120')->get();
-        $scores = Scores::select('*')->where('student_id', '00083120')->with('subject')->orderBy('cicle', 'asc')->get();
-        $higher = DB::table('scores')->where('student_id', '00083120')->max('cicle');
+        $users = Users::select('*')->where('id', auth()->id())->get();
+        $scores = Scores::select('*')->where('id', auth()->id())->with('subject')->orderBy('cicle', 'asc')->get();
+        $higher = DB::table('scores')->where('id', auth()->id())->max('cicle');
 
-        return view('Profile.myScores', compact('users', 'scores'), ['higher'=>$higher]);
+        return view('Profile.myScores', compact('users', 'scores'), ['higher'=>$higher, 'numbers'=>$request->numbers]);
     }
 
     public function adding(Request $request){
@@ -83,15 +82,18 @@ class ProfileController extends Controller
     }
     
     public function updateData(){
-        $users = Users::select('*')->where('id_student', '00083120')->with('university','career'
+        $users = Users::select('*')->where('id', auth()->id())->with('university','career'
         )->get();
         $countries = Countries::select('id', 'name')->get();
         $universities = Universities::select('id', 'name')->get();
         $careers = Careers::select('id', 'name')->get();
         $faculties = Faculties::select('id', 'name')->get();
         $socialmedia = SocialMedia::select('id', 'socialName')->get();
+        $userMedia = SocialUser::select('user_id', 'socialmedia_id', 'link')
+        ->where('user_id', 1)->with('socialMedia')
+        ->get();
         return view('Profile.updateProfile', compact(
-            'users', 'countries', 'universities', 'careers', 'faculties', 'socialmedia'
+            'users', 'countries', 'universities', 'careers', 'faculties', 'socialmedia', 'userMedia'
         ));
     }
     

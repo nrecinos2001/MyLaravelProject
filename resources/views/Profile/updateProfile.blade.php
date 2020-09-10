@@ -21,13 +21,13 @@
                 <input required type="text" id="name" placeholder="Ingresa tu nombre" name="name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->name}}">
                 {{-- Lastname --}}
                 <label for="lastname">Actualizar apellido</label>
-                <input required type="text" id="lastname" placeholder="Ingresa tu apellido" name="last_name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->lastname}}">
+                <input required type="text" id="lastname" placeholder="Ingresa tu apellido" name="lastname" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->lastname}}">
                 {{-- Email --}}
                 <label for="email">Actualizar Correo</label>
                 <input required type="email" id="email" placeholder="Ingresa tu correo electronico" name="email" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->email}}">
                 {{-- Password --}}
-                <label for="pasword">Actualizar contraseña</label>
-                <input required type="password" id="password" placeholder="Ingresa tu contraseña" name="passWord" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->password}}">
+                {{-- <label for="pasword">Actualizar contraseña</label>
+                <input required type="password" id="password" placeholder="Ingresa tu contraseña" name="passWord" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded"> --}}
                 {{-- Carne, Student_id --}}
                 <label for="sId">Actualizar carné</label>
                 <input required type="text" name="sId" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->id_student}}">
@@ -74,9 +74,6 @@
                 {{-- Username --}}
                 <label for="username">Actualizar nombre de usuario</label>
                 <input type="text" id="username" placeholder="Ingresa tu nombre de usuario" name="username" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->username}}">
-                {{--Profile Picture--}}
-                <label for="profpic">Actualizar foto de perfil</label>
-                <input type="file" name="profilepic" id="profpic" accept="image/*" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <br>
                 <button class="w-1/2 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
                     ¡Acualizar!
@@ -111,13 +108,26 @@
             <form action="">
                 <label for="socialmediaselect">Seleccione la red social</label>
                 <select name="socialmedia" id="socialmediaselect" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                    @foreach ($socialmedia as $social)
-                        <option value="{{$social->id}}">{{$social->socialName}}</option>
+                    @foreach ($userMedia as $social)
+                    {{-- @if($social->user_id == $user->id) --}}
+                        <option value="{{$social->id}}">{{$social->socialmedia->socialName}}</option>
+                    {{-- @endif --}}
                     @endforeach
                 </select>
                 <br>
-                <label for="link">Ingresar el enlace de tu perfil</label>
+                <label for="link">Ingresar el nuevo enlace de tu perfil</label>
                 <input type="text" id="link" name="linkforusermedia" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                <br>
+                <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
+                    Actualizar
+                </button>
+            </form>
+            <hr class="my-5 bg-purpe-600">
+            <strong class="my-2">Actualizar foto de perfil</strong>
+            <form action="">
+                {{--Profile Picture--}}
+                <label for="profpic">Actualizar foto de perfil</label>
+                <input type="file" name="profilepic" id="profpic" accept="image/*" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <br>
                 <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
                     Actualizar

@@ -16,7 +16,7 @@
     <!--Navbar-->
 <div class="container w-full bg-purple-500 flex text-white">
     <div class="mx-auto flex">
-        <a href="">
+        <a href="{{route('myProfile')}}">
             <img src="/images/logo_white.png" alt="Inicio" class="h-20 lg:mx-3 sm:w-20 mx-auto">
         </a>
         <strong class="my-auto">-Administrador</strong>

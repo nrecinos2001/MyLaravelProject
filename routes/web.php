@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GoalsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -14,13 +15,13 @@ use App\Models\Goals;
 
 //Welcome rutes and related with profile
 
-Route::get('/', [IndexController::class, 'welcome'])->name('home');
+Route::get('/', [IndexController::class, 'welcome'])->name('welcome');
 Route::get('loginView', [ProfileController::class, 'loginUser'])->name('loginView');
-Route::prefix('singup')->group(function(){
-    Route::get('partOne', [SingUpController::class, 'singUp'])->name('singUp');
-    Route::post('partTwo', [SingUpController::class, 'singUpTwo'])->name('singUp2'); 
+Route::prefix('register')->group(function(){
+    Route::get('partTwo', [SingUpController::class, 'singUp'])->name('registerTwo');
+    Route::post('finish', [SingUpController::class, 'singUpTwo'])->name('registerFinish'); 
 });
-//Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function(){
     Route::prefix('profile/me')->group(function(){
         Route::get('/', [ProfileController::class, 'myProfile'])->name('myProfile');
         Route::get('/myScores', [ProfileController::class, 'myScores'])->name('myScores');
@@ -30,13 +31,13 @@ Route::prefix('singup')->group(function(){
         Route::post('/myGoals/adding', [GoalsController::class, 'store'])->name('storeGoal');
         Route::post('/myGoals/updating', [GoalsController::class, 'update'])->name('updatingGoal');
         Route::get('/update', [ProfileController::class, 'updateData'])->name('update');
-        Route::get('/updating', [UpdateUserInfoController::class, 'updatingData'])->name('updatingUser');
+        Route::post('/updating', [UpdateUserInfoController::class, 'updatingData'])->name('updatingUser');
         Route::post('/update/addSM_user', [ProfileController::class, 'addSocialU'])->name('addSM_user');
         //Añadir notas del usuario
         Route::post('/myScores/adding', [ScoresAddingController::class, 'adding'])->name('adding');
+        Route::get('profile/admin', [AdminController::class, 'myAdminProfile'])->name('adminAccess');
     });
-    Route::get('profile/admin', [AdminController::class, 'myAdminProfile'])->name('adminAccess');
-//});
+});
 //Busqueda
 Route::prefix('search')->group(function(){
     Route::get('results', [SearchController::class, 'results']);
@@ -63,4 +64,4 @@ Route::prefix('admin/add')->group(function() {
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', [HomeController::class, 'index'])->name('home');

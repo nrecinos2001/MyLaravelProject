@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::FULL;
 
     /**
      * Create a new controller instance.
@@ -52,21 +52,9 @@ class RegisterController extends Controller
     {
         
         return Validator::make($data, [
-            'id_student' => ['required', 'string', 'max:191'],
-            'name' => ['required','string','max:191'],
-            'lastname' => ['required','string','max:191'],
-            'email' => ['required','string','max:191'],
-            'password' => ['required','string','max:191'],
-            'country_id' => ['required','integer'],
-            'gender' => ['required','string','max:1'],
-            'university_id' => ['required','integer'],
-            'faculty_id' => ['required','integer'],
-            'career_id' => ['required','integer'],
-            'username' => 'required','string','max:191',
-            'image' => ['required','image','max:5000']
-            /* 'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'], */
+            'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
     }
 
@@ -78,20 +66,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $photo =basename(Storage::put('profile', $data['image']));
         return User::create([
-            'id_student' => $data['id_student'],
             'name' => $data['name'],
-            'lastname' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'country_id'=> $data['country_id'],
-            'gender' => $data['gender'],
-            'university_id' => $data['university_id'],
-            'faculty_id' => $$data['faculty_id'],
-            'career_id' => $data['career_id'],
-            'username' => $data['username'],
-            'image' => $data[$photo]
+            'password' => bcrypt($data['password']),
         ]);
     }
 }

@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/logo.png">
-    <style>
-        .bw-social{
-            filter: grayscale(85%);
-        }
-    </style>
     <title>Me!</title>
 </head>
 <body>
@@ -54,9 +49,8 @@
     </div>
     <div class="lg:flex lg:w-2/4 h-64 ml-1/4 sm:w-full">
         @include('Elements.chart')
-        {{-- <div class="lg:w-3/4 h-64 mx-auto sm:w-full">
-        </div> --}}
     </div>
+    <input type="hidden" value="{{$pro['done']}}" name="numbers">
     @endforeach
 </body>
 </html>

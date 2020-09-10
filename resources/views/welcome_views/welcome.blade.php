@@ -27,7 +27,7 @@
                 </button>
             </a>
             <br><br>
-            <a href="{{route('loginView')}}">
+            <a href="{{route('login')}}">
                 <button class="bg-white hover:bg-purple-100 text-purple-400 font-bold py-2 px-4 rounded margin-white">
                     Login!
                 </button>

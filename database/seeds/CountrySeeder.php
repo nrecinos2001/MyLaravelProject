@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Countries;
 use Illuminate\Database\Seeder;
 use \Illuminate\Support\Facades\DB;
 
@@ -12,8 +13,8 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('countries')->insert([
-            'name' => 'El Salvador',
+        $newCountrie = Countries::create([
+            'name' => 'El Salvador' 
         ]);
     }
 }

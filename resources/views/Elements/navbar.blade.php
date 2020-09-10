@@ -8,7 +8,7 @@
     <div class="text-purple-500 mx-auto lg:w-auto my-auto sm:w-3/4">
         <form action="/search/results" action="POST" class="flex">
             @csrf
-            <input type="text" name="searched" placeholder="Ingrese el usuario a buscar" class="lg:mx-1 my-2 px-2 py-2 rounded lg:w-64 text-center w-3/4">
+            <input type="text" name="name" placeholder="Ingrese el usuario a buscar" class="lg:mx-1 my-2 px-2 py-2 rounded lg:w-64 text-center w-3/4">
             <button class="bg-white lg:w-auto lg:mx-1 my-2 lg:px-2 py-2 hover:bg-purple-200 rounded w-1/4 mx-1">Buscar</button>
         </form>
     </div>
