@@ -19,7 +19,7 @@
             <input type="number" name="nos" placeholder="Materias" class="border border-purple-700 rounded">
             <input type="number" name="cicle" placeholder="Ciclo" class="border border-purple-700 rounded">
             <br>
-            <button class="text-white bg-green-400 lg:w-auto lg:mx-1 my-2 lg:px-2 py-2 hover:bg-green-200 rounded w-1/4 mx-1">
+            <button class="text-white bg-green-400 lg:w-auto lg:mx-1 my-2 lg:px-2 py-2 hover:bg-green-200 rounded mx-1 sm:px-auto sm:w-1/2">
                 Añadir materias
             </button>
         </form>

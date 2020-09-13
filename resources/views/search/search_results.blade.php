@@ -31,7 +31,7 @@
             <div class="mb-8">
                 <div class="text-white font-bold text-xl mb-2">{{$result->name}} - {{$result->lastname}}</div>
                 <p class="text-purple-100 text-base">
-                    Estudiante de {{$result->career->name}} en la Universidad
+                    Estudiante de {{$result->career->name}} en 
                     {{$result->university->name}}, {{$result->country->name}}.
                 </p>
             </div>

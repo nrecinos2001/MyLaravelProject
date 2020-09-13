@@ -1,8 +1,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
 @for ($i = 0; $i < $higher; $i++)
-<div class="w-full mt-5">
-    <canvas id="myChart_{{$i}}" class="mx-auto">    </canvas>
+<div class="w-full mt-5 mx-auto">
+    <canvas id="myChart_{{$i}}">    </canvas>
+</div>
+<div class="my-auto">
+    <table class="w-3/4 text-green-500 mx-auto">
+        <thead>
+            <th>Materia:</th>
+            <th>Nota</th>
+        </thead>
+        @foreach ($scores as $desc)
+        @if($desc->cicle == $i+1)
+        <tbody>
+            <tr>
+                <td class="text-left">{{$desc->subject->name}}</td>
+                <td class="my-auto">{{$desc->score}}</td>
+            </tr>
+        </tbody>
+        @endif
+    @endforeach
+    </table>
+</ul>
 </div>
 @foreach ($scores as $score)
 <script>
@@ -47,10 +66,17 @@
         }]
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
             yAxes: [{
                 ticks: {
                     beginAtZero: true
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    display: false 
                 }
             }]
         }

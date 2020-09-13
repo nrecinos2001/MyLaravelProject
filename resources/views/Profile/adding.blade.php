@@ -16,7 +16,7 @@
             Seleccione su materia y digite su nota y número de unidades valorativas (En este orden)
         </h3>
     </div>
-    <div class="container mt-5 w-1/2 mx-auto text-center text-black">
+    <div class="container mt-5 lg:w-1/2  text-center text-black sm:w-3/4 sm:mx-auto">
         <form action="/profile/me/myScores/adding" method="POST">
             @csrf
             <input type="hidden" value="{{$nOfSub}}" name="nOfS">
@@ -25,8 +25,8 @@
             @for ($i = 0; $i < $nOfSub; $i++)
             @include('Elements.subjectsForm')
             @endfor
-            <button class="text-white bg-green-400 lg:w-auto lg:mx-1 my-2 lg:px-2 py-2 hover:bg-green-200 rounded w-1/4 mx-1">
-                Enviar
+            <button class="text-white bg-green-400 lg:w-auto lg:mx-1 my-2 lg:px-2 py-2 hover:bg-green-200 rounded lg:w-1/4 mx-1 sm:w-1/2">
+                Agregar Materias
             </button>
         </form>    
     </div>
