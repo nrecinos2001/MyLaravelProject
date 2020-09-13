@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
                 $table->integer('career_id')->index()->nullable();
                 $table->integer('faculty_id')->index()->nullable();
                 $table->integer('country_id')->index()->nullable();
+                $table->char('isadmin')->nullable();
                 $table->string('image')->nullable();
                 $table->rememberToken();
                 $table->timestamps();

@@ -17,11 +17,11 @@
             <p>Registrate</p>
         </h1>
         
-        <form action="{{ route('register') }}" method="POST" class="py-5" enctype="multipart/form-data">
+        <form action="{{ route('registerFinish') }}" method="POST" class="py-5" enctype="multipart/form-data">
             @csrf
             <div class="container grid grid-cols-1 lg:grid-cols-2">
-                <input required type="text" placeholder="Ingresa tu apellido" name="last_name" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                @error('last_name')
+                <input required type="text" placeholder="Ingresa tu apellido" name="lastname" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                @error('lastname')
                     <p>Error en este campo</p>
                 @enderror
                 <input required type="text" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">

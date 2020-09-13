@@ -17,7 +17,7 @@ class UniversitySeeder extends Seeder
             'color' => 'blue-700',
             'country_id' => 1,
             'abbreviation' => 'UCA',
-            'logo' => 'UCA_ES.png'
+            'logo' => 'UCA_ES.jpg'
         ]);
     }
 }

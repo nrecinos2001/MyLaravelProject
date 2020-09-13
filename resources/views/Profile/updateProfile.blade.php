@@ -30,7 +30,7 @@
                 <input required type="password" id="password" placeholder="Ingresa tu contraseña" name="passWord" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded"> --}}
                 {{-- Carne, Student_id --}}
                 <label for="sId">Actualizar carné</label>
-                <input required type="text" name="sId" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->id_student}}">
+                <input required type="text" id="sId" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->id_student}}">
                 {{-- Country --}}
                 <label for="country">Actualizar país</label>
                 <select required name="country" id="country" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">

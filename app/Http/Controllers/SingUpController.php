@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Users; 
+use App\Models\Users as AppUser; 
 use App\Models\Universities;
 use App\Models\Countries;
 use App\Models\Careers;
@@ -21,27 +21,27 @@ class SingUpController extends Controller
     }
     public function singUpTwo(Request $request){
         $request->validate([
-            'id_student' => 'required|string|max:191',         
-            'lastname' => 'required|string|max:191',
-            'country_id' => 'required|integer',
+            'student_id' => 'required|string|max:75',
+            'lastname' => 'required|string|max:25',
+            'country' => 'required|integer',
             'gender' => 'required|string|max:1',
-            'university_id' => 'required|integer',
-            'faculty_id' => 'required|integer',
-            'career_id' => 'required|integer',
+            'university' => 'required|integer',
+            'faculty' => 'required|integer',
+            'career' => 'required|integer',
             'username' => 'required|string|max:191',
-            'image' => 'required|image|max:5000'
+            'profilepic' => 'image|max:5000'
         ]);
         /* $image =  */
-        $fillUser = Users::find(auth()->id());
+        $fillUser = AppUser::find(auth()->id());
             $fillUser->id_student = $request->student_id;
-            $fillUser->lastname = $request->last_name;
-            $fillUser->country_i = $request->country;
+            $fillUser->lastname = $request->lastname;
             $fillUser->gender = $request->gender;
+            $fillUser->country_id = $request->country;
             $fillUser->university_id = $request->university;
             $fillUser->faculty_id = $request->faculty;
-            $fillUser->career_i = $request->career;
+            $fillUser->career_id = $request->career;
             $fillUser->username = $request->username;
-            $fillUser->image = basename(Storage::put('profile', $request->profilepic));
+            $fillUser->image = basename(Storage::put('profile', $request->profilepic)); 
             $fillUser->save();
         return redirect()->route('myProfile');
     }

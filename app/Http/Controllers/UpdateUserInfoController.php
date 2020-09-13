@@ -11,8 +11,8 @@ class UpdateUserInfoController extends Controller
 {
     public function updatingData(Request $request){
         $request->validate([
-            //'student_id' => 'required|string|max:191',
-             'name' => 'required|string|max:25',
+            'student_id' => 'required|string|max:75',
+            'name' => 'required|string|max:25',
             'lastname' => 'required|string|max:25',
             'email' => 'required|string|max:191',
             //'password' => 'required|string|max:191',
@@ -25,7 +25,7 @@ class UpdateUserInfoController extends Controller
             //'image' => 'required|image|max:5000'
         ]);
         //$image = basename(Storage::put('profile', $request->profilepic));
-        $newupdate = AppUser::find($request->id_user);
+        $newupdate = AppUser::find(auth()->id());
         $newupdate->id_student = $request->student_id;
         $newupdate->name = $request->name;
         $newupdate->lastname = $request->lastname;

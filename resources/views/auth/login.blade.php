@@ -46,8 +46,8 @@
 <br>
 |
 <br>
-@if (Route::has('singUp'))
-    <a class="hover:underline mb-4 text-sm" href="{{ route('singUp') }}">
+@if (Route::has('register'))
+    <a class="hover:underline mb-4 text-sm" href="{{ route('register') }}">
         Registrate
     </a>
 @endif

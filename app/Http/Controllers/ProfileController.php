@@ -28,7 +28,7 @@ class ProfileController extends Controller
     //Profile
     public function myProfile(Request $request){
         $countries = Countries::select('*')->orderBy('name', 'asc')->get();
-        $scores = Scores::select('*')->where('id', auth()->id())->get();
+        $scores = Scores::select('*')->where('student_id', auth()->id())->get();
         $userMedia = SocialUser::select('user_id', 'socialmedia_id', 'link')
         ->where('user_id', auth()->id())->with('socialMedia')
         ->get();
@@ -66,8 +66,8 @@ class ProfileController extends Controller
     
     public function myScores(Request $request){
         $users = Users::select('*')->where('id', auth()->id())->get();
-        $scores = Scores::select('*')->where('id', auth()->id())->with('subject')->orderBy('cicle', 'asc')->get();
-        $higher = DB::table('scores')->where('id', auth()->id())->max('cicle');
+        $scores = Scores::select('*')->where('student_id', '00083120')->with('subject')->orderBy('cicle', 'asc')->get();
+        $higher = DB::table('scores')->where('student_id', '00083120')->max('cicle');
 
         return view('Profile.myScores', compact('users', 'scores'), ['higher'=>$higher, 'numbers'=>$request->numbers]);
     }
@@ -99,7 +99,7 @@ class ProfileController extends Controller
     
     public function addSocialU(Request $request){
         $newLink = SocialUser::create([
-            'user_id' => $request->user_id,
+            'user_id' => auth()->id(),
             'socialmedia_id' => $request->sm_id,
             'link' => $request->link
         ]);
