@@ -12,7 +12,7 @@ class ScoresAddingController extends Controller
         //dd($request->all());
         for($i = 0; $i < $request->nOfS; $i++){
             $score = Scores::create([
-                'student_id' => $request->s_ID,
+                'student_id' => auth()->id(),
                 'subject_id' => $request->subjects[$i],
                 'score' => $request->scores[$i],
                 'UV' => $request->unities[$i],

@@ -66,8 +66,8 @@ class ProfileController extends Controller
     
     public function myScores(Request $request){
         $users = Users::select('*')->where('id', auth()->id())->get();
-        $scores = Scores::select('*')->where('student_id', '00083120')->with('subject')->orderBy('cicle', 'asc')->get();
-        $higher = DB::table('scores')->where('student_id', '00083120')->max('cicle');
+        $scores = Scores::select('*')->where('student_id', auth()->id())->with('subject')->orderBy('cicle', 'asc')->get();
+        $higher = DB::table('scores')->where('student_id', auth()->id())->max('cicle');
 
         return view('Profile.myScores', compact('users', 'scores'), ['higher'=>$higher, 'numbers'=>$request->numbers]);
     }
