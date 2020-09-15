@@ -13,6 +13,7 @@ use App\Models\Subjects;
 use App\Models\Scores;
 use App\Models\SocialMedia;
 use App\Models\SocialUser;
+use App\Models\subjectsbycareer;
 use App\Models\User as ModelsUser;
 use App\User as AppUser;
 use Illuminate\Foundation\Auth\User;
@@ -32,35 +33,46 @@ class ProfileController extends Controller
         $userMedia = SocialUser::select('user_id', 'socialmedia_id', 'link')
         ->where('user_id', auth()->id())->with('socialMedia')
         ->get();
+        $users = Users::select('*')->where('id', auth()->id())
+        ->with('university','career')
+        ->get();
+        //Progress of the career
         $uvAll = 0;
         $sumAll = 0;
+        $done = 0;
+        $subjectsCounter = 0;
+        foreach($users as $u){
+            $subjectsTotal = subjectsbycareer::select('subjects')
+            ->where('university_id', $u->university_id)
+            ->where('career_id', $u->career_id)
+            ->get();
+        }
         foreach ($scores as $score) {
             if($score->score >= 6){
                 $sumAll += ($score->score * $score->UV);
                 $uvAll += $score->UV;
+                $subjectsCounter++;
             }
         }
-        //Progress of the career
-        $done = 4.5;
-        $missing = 100-$done;
-
+        foreach ($subjectsTotal as $sT){
+            $allS = $sT->subjects;
+        }
+        
         //CUM
         if($sumAll == 0 && $uvAll == 0){
             $sumAll = 0.01;
             $uvAll = 1;
         }
+        $missing = $allS - $subjectsCounter;
         $achCum = round(($sumAll/$uvAll),2);
         $missCum = 10 - $achCum;
         $progress = [
-            'done' => $done,
+            'done' => $subjectsCounter,
             'missing' => $missing,
             'CUM_ach' => $achCum,
             'CUM_miss' => $missCum
         ];
-            $users = Users::select('*')->where('id', auth()->id()
-            )->with('university','career'
-            )->get();
-            return view('Profile.profile',  compact('users', 'userMedia'), ['pro'=>$progress, 'numbers'=>$sumAll]);
+        return view('Profile.profile',  compact('users', 'userMedia'), ['pro'=>$progress, 'numbers'=>$sumAll]);
         }
 
     
@@ -73,12 +85,15 @@ class ProfileController extends Controller
     }
 
     public function adding(Request $request){
+        $request->validate([
+            'nos'=>'required|integer|max:10',
+            'cicle'=>'required|integer|max:25'
+
+        ]);
         $subjects = Subjects::select('id', 'name')->orderBy('name', 'asc')->get();
-        $nos = $request->nos;
-        $cicle = $request->cicle;
         $users = Users::select('*')->where('id_student', '00083120')->get();
         
-        return view('Profile.adding', compact('subjects', 'users'), ['nOfSub'=>$nos, 'cicle'=>$cicle]);
+        return view('Profile.adding', compact('subjects', 'users'), ['nOfSub'=>$request->nos, 'cicle'=>$request->cicle]);
     }
     
     public function updateData(){
@@ -89,8 +104,8 @@ class ProfileController extends Controller
         $careers = Careers::select('id', 'name')->get();
         $faculties = Faculties::select('id', 'name')->get();
         $socialmedia = SocialMedia::select('id', 'socialName')->get();
-        $userMedia = SocialUser::select('user_id', 'socialmedia_id', 'link')
-        ->where('user_id', 1)->with('socialMedia')
+        $userMedia = SocialUser::select('id', 'user_id', 'socialmedia_id', 'link')
+        ->where('user_id', auth()->id())->with('socialMedia')
         ->get();
         return view('Profile.updateProfile', compact(
             'users', 'countries', 'universities', 'careers', 'faculties', 'socialmedia', 'userMedia'

@@ -41,6 +41,10 @@ class GoalsController extends Controller
         return redirect()->route('showGoals');
     }
     public function update(Request $request){
+        $request->validate([
+            'status' => 'required|integer|max:2',
+        ]);
+        
         $newupdate = Goals::find($request->goal_id);
         $newupdate->state = $request->status;
         $newupdate->save();

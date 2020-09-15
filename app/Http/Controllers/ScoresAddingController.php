@@ -9,7 +9,7 @@ use App\Models\Scores;
 class ScoresAddingController extends Controller
 {
     public function adding(Request $request){
-        //dd($request->all());
+        
         for($i = 0; $i < $request->nOfS; $i++){
             $score = Scores::create([
                 'student_id' => auth()->id(),

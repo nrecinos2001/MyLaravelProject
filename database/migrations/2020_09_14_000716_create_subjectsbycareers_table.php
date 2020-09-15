@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScoresTable extends Migration
+class CreateSubjectsbycareerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateScoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('scores', function (Blueprint $table) {
+        Schema::create('subjectsbycareers', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_id');
-            $table->string('subject_id');
-            $table->float('score', 4, 2);
-            $table->integer('UV');
-            $table->integer('cicle');
+            $table->integer('university_id');
+            $table->integer('career_id');
+            $table->integer('faculty_id');
+            $table->integer('subjects');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateScoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scores');
+        Schema::dropIfExists('subjectsbycareers');
     }
 }

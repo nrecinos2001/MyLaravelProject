@@ -6,7 +6,7 @@
     var progressChar = new Chart(proGraphic, {
         type: "doughnut",
         data: {
-            labels: ['Carrera Completada', 'Carrera Restante'],
+            labels: ['Materias Pasadas', 'Materias Restantes'],
             datasets:[{
                 label: 'Progreso de la carrera',
                 data: [ "{{$pro['done']}}", "{{$pro['missing']}}"],

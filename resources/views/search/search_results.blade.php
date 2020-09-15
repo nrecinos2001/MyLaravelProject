@@ -20,7 +20,7 @@
 <div class="text-center">
     <p class="italic">Resultado de la busqueda:</p>
 </div>
-@if($results)
+@if(!is_null($results))
 @foreach ($results as $result)
 
 <div class="lg:mx-auto lg:w-3/4 text-white">
@@ -29,10 +29,22 @@
         </div>
         <div class="border-r border-b border-1 border-gray-400 lg:border-1-0 lg:border-t lg:w-full lg:border-gray-400 bg-{{$result->university->color}} rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
             <div class="mb-8">
-                <div class="text-white font-bold text-xl mb-2">{{$result->name}} - {{$result->lastname}}</div>
+                <div class="text-white font-bold text-xl mb-2">{{$result->name}} {{$result->lastname}}</div>
                 <p class="text-purple-100 text-base">
                     Estudiante de {{$result->career->name}} en 
                     {{$result->university->name}}, {{$result->country->name}}.
+                </p>
+                <p>
+                    @foreach ($subjectsDone as $sd)
+                    @if($sd->student_id == $result->id)
+                    {{$subjectsDone->score}} 
+                    @endif
+                    @endforeach
+                    /
+                    @foreach ($allSubjects as $as)
+                        {{$as->subjects}}
+                    @endforeach
+                    materias cursadas
                 </p>
             </div>
             <div class="flex items-center">

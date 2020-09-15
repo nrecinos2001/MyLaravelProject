@@ -75,8 +75,8 @@
                 <label for="username">Actualizar nombre de usuario</label>
                 <input type="text" id="username" placeholder="Ingresa tu nombre de usuario" name="username" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->username}}">
                 <br>
-                <button class="w-1/2 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
-                    ¡Acualizar!
+                <button class="w-1/2 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 lg:px-4 sm:px-auto rounded margin-white">
+                    Acualizar
                 </button>
                 <br>
             </div>
@@ -95,9 +95,9 @@
                 </select>
                 <br>
                 <label for="link">Ingresar el enlace de tu perfil</label>
-                <input type="text" id="link" name="link" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                <input type="text" id="link" name="link" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" placeholder="Ej: http://www.facebook.com">
                 <br>
-                <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
+                <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 lg:px-4 sm:px-auto rounded margin-white">
                     Agregar
                 </button>
             </form>
@@ -105,31 +105,49 @@
             <hr class="my-5 bg-purpe-600">
 
             <strong class="my-2">Actualizar redes sociales</strong>
-            <form action="">
+            <form action="{{route('updateSM_user')}}" method="POST">
+                @csrf
                 <label for="socialmediaselect">Seleccione la red social</label>
                 <select name="socialmedia" id="socialmediaselect" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     @foreach ($userMedia as $social)
-                    {{-- @if($social->user_id == $user->id) --}}
                         <option value="{{$social->id}}">{{$social->socialmedia->socialName}}</option>
-                    {{-- @endif --}}
                     @endforeach
                 </select>
                 <br>
                 <label for="link">Ingresar el nuevo enlace de tu perfil</label>
                 <input type="text" id="link" name="linkforusermedia" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <br>
-                <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
+                <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 lg:px-4 sm:px-auto rounded margin-white">
                     Actualizar
                 </button>
             </form>
             <hr class="my-5 bg-purpe-600">
+
+            {{-- Eliminar red social --}}
+            <strong class="my-2">Eliminar redes sociales</strong>
+            <form action="{{route('deletingSM_user')}}" method="POST">
+                @csrf
+                <label for="socialmediaselect">Seleccione la red social</label>
+                <select name="socialmedia" id="socialmediaselect" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
+                    @foreach ($userMedia as $social)
+                        <option value="{{$social->id}}">{{$social->socialmedia->socialName}}</option>
+                    @endforeach
+                </select>
+                <br>
+                <button class="w-1/4 mx-auto bg-red-400 hover:bg-red-600 text-white font-bold py-3 lg:px-4 sm:px-auto rounded margin-white">
+                    Eliminar
+                </button>
+            </form>
+            <hr class="my-5 bg-purpe-600">
+            
+            {{--Profile Picture--}}
             <strong class="my-2">Actualizar foto de perfil</strong>
-            <form action="">
-                {{--Profile Picture--}}
+            <form action="{{route('updatePhoto')}}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <label for="profpic">Actualizar foto de perfil</label>
                 <input type="file" name="profilepic" id="profpic" accept="image/*" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                 <br>
-                <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white">
+                <button class="w-1/4 mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 lg:px-4 sm:px-auto rounded margin-white">
                     Actualizar
                 </button>
             </form>

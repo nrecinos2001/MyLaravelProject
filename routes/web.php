@@ -33,6 +33,9 @@ Route::middleware('auth')->group(function(){
         Route::get('/update', [ProfileController::class, 'updateData'])->name('update');
         Route::post('/updating', [UpdateUserInfoController::class, 'updatingData'])->name('updatingUser');
         Route::post('/update/addSM_user', [ProfileController::class, 'addSocialU'])->name('addSM_user');
+        Route::post('/update/updateSM_user', [UpdateUserInfoController::class, 'updateSocialUser'])->name('updateSM_user');
+        Route::post('/update/deletingSM', [UpdateUserInfoController::class, 'destroySM'])->name('deletingSM_user');
+        Route::post('/update/updatingPhoto', [UpdateUserInfoController::class, 'updatePhoto'])->name('updatePhoto');
         //Añadir notas del usuario
         Route::post('/myScores/adding', [ScoresAddingController::class, 'adding'])->name('adding');
         Route::get('profile/admin', [AdminController::class, 'myAdminProfile'])->name('adminAccess');

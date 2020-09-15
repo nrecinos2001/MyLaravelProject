@@ -31,7 +31,6 @@ class SingUpController extends Controller
             'username' => 'required|string|max:191',
             'profilepic' => 'image|max:5000'
         ]);
-        /* $image =  */
         $fillUser = AppUser::find(auth()->id());
             $fillUser->id_student = $request->student_id;
             $fillUser->lastname = $request->lastname;

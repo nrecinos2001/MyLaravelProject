@@ -39,12 +39,16 @@ class AdminController extends Controller
             $request->session()->flash('uStored', true);
             return redirect()->route('adminAccess');
         }else{
-            return view('Admin.mistake_view');
+            abort('Ocurrió un error inesperado, intentelo nuevamente.');
         }
     }
 
     //AÑADIR MATERIA
     public function addSubject(Request $request){
+        $request->validate([
+            'sub_name' => 'required|string|max:191',
+        ]);
+
         $newSubject = Subjects::create([
             'name' => $request->sub_name,
         ]);
@@ -52,61 +56,74 @@ class AdminController extends Controller
             $request->session()->flash('subStored', true);
             return redirect()->route('adminAccess');
             }else{
-            return view('Admin.mistake_view');
+            abort('Ocurrió un error inesperado, intentelo nuevamente.');        
         }
     }
 
     //AÑADIR FACULTAD
     public function addFaculty(Request $request){
+        $request->validate([
+            'fac_name' => 'required|string|max:191'
+        ]);
         $newFaculty = Faculties::create([
-            'name' => $request->fac_name,
+            'name' => $request->fac_name
         ]);
         if($newFaculty){
             $request->session()->flash('facStored', true);
             return redirect()->route('adminAccess');
         }else{
-            return view('Admin.mistake_view');
+            abort('Ocurrió un error inesperado, intentelo nuevamente.');        
         }
     }
 
     //AÑADIR CARRERA
     public function addCareer(Request $request){
+        $request->validate([
+            'car_name' => 'required|string|max:191',
+        ]);
         $newCareer = Careers::create([
-            'name' => $request->car_name,
+            'name' => $request->car_name
         ]);
         if($newCareer){
             $request->session()->flash('cStored', true);
             return redirect()->route('adminAccess');
         }else{
-            return view('Admin.mistake_view');
+            abort('Ocurrió un error inesperado, intentelo nuevamente.');        
         }
     }
 
     //AÑADIR PAÍS
     public function addCountry(Request $request){
+        $request->validate([
+            'country_name' => 'required|string|max:191'
+        ]);
         $newCountry = Countries::create([
-            'name' => $request->country_name,
+            'name' => $request->country_name
             ]);
         if($newCountry){
             $request->session()->flash('counStored', true);
             return redirect()->route('adminAccess');
         }else{
-            return view('Admin.mistake_view');
+            abort('Ocurrió un error inesperado, intentelo nuevamente.');        
         }
     }
     
     //AÑADIR RED SOCIAL
     public function addSocialMedia(Request $request){
-        $photo = basename(Storage::put('SocialPhotos', $request->socialPhoto));
+        $request->validate([
+            'socialName' => 'required|string|max:191',
+            'socialPhoto' => 'required|image|max:5000'
+        ]);
+
         $newSocialMedia = SocialMedia::create([
             'socialName' => $request->socialName,
-            'socialPhoto' => $photo
+            'socialPhoto' => basename(Storage::put('SocialPhotos', $request->socialPhoto))
         ]);
         if($newSocialMedia){
             $request->session()->flash('sMediaStored', true);
             return redirect()->route('adminAccess');
         }else{
-            return view('Admin.mistake_view');
+            abort('Ocurrió un error inesperado, intentelo nuevamente.');        
         }
     }
 }
