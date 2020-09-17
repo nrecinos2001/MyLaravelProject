@@ -7,6 +7,7 @@ use App\Models\Subjects;
 use App\Models\Careers;
 use App\Models\Faculties;
 use App\Models\Countries;
+use App\Models\Numbers;
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -123,6 +124,27 @@ class AdminController extends Controller
         ]);
         if($newSocialMedia){
             $request->session()->flash('sMediaStored', true);
+            return redirect()->route('adminAccess');
+        }else{
+            abort('Ocurrió un error inesperado, intentelo nuevamente.');        
+        }
+    }
+
+    public function addnOfSubjects(Request $request){
+        $request->validate([
+            'subsNumber' => 'required|integer',
+            'universityNumber' => 'required|integer',
+            'careerNumber' => 'required|integer'
+        ]);
+
+        $newNofSubjects = Numbers::create([
+            'university_id' => $request->universityNumber,
+            'career_id' => $request->careerNumber,
+            'nofSubjects' => $request->subsNumber
+        ]);
+
+        if($newNofSubjects){
+            $request->session()->flash('nOfSubjects', true);
             return redirect()->route('adminAccess');
         }else{
             abort('Ocurrió un error inesperado, intentelo nuevamente.');        

@@ -22,7 +22,10 @@ class ScoresAddingController extends Controller
             ]);
         }
         
-        $scores = Scores::select('*')->where('student_id', auth()->id())->get();
+        $scores = Scores::select('*')
+        ->where('student_id', auth()->id())
+        ->get();
+        
         foreach ($scores as $score) {
             if($score->score >= 6){
                 $sumAll += ($score->score * $score->UV);

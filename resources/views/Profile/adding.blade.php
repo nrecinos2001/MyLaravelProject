@@ -16,7 +16,7 @@
             Seleccione su materia y digite su nota y número de unidades valorativas (En este orden)
         </h3>
     </div>
-    <div class="container mt-5 lg:w-1/2  text-center text-black sm:w-3/4 sm:mx-auto">
+    <div class="container mt-5 lg:w-1/2  text-center text-black sm:mx-auto">
         <form action="/profile/me/myScores/adding" method="POST">
             @csrf
             <input type="hidden" value="{{$nOfSub}}" name="nOfS">

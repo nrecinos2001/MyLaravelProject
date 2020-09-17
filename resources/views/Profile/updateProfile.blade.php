@@ -11,6 +11,7 @@
     @foreach ($users as $user)
     @include('Elements.navbar')
     <div class=" container lg:grid lg:grid-cols-2">
+        {{-- Formulario 1 --}}
         <form action="{{route('updatingUser')}}" method="POST">
             @csrf
             <input type="hidden" value="{{$user->id}}" name="id_user">
@@ -25,9 +26,6 @@
                 {{-- Email --}}
                 <label for="email">Actualizar Correo</label>
                 <input required type="email" id="email" placeholder="Ingresa tu correo electronico" name="email" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->email}}">
-                {{-- Password --}}
-                {{-- <label for="pasword">Actualizar contraseña</label>
-                <input required type="password" id="password" placeholder="Ingresa tu contraseña" name="passWord" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded"> --}}
                 {{-- Carne, Student_id --}}
                 <label for="sId">Actualizar carné</label>
                 <input required type="text" id="sId" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded" value="{{$user->id_student}}">
@@ -83,7 +81,7 @@
         </form>
         
         <div class="text-center">
-            <strong class="my-2">Agregar redes sociales</strong>
+            {{-- Form 2 --}}
             <form action="{{route('addSM_user')}}" method="POST">
                 @csrf
                 <input type="hidden" value="1" name="user_id">
@@ -103,8 +101,8 @@
             </form>
 
             <hr class="my-5 bg-purpe-600">
-
             <strong class="my-2">Actualizar redes sociales</strong>
+            {{-- Form 3 --}}
             <form action="{{route('updateSM_user')}}" method="POST">
                 @csrf
                 <label for="socialmediaselect">Seleccione la red social</label>

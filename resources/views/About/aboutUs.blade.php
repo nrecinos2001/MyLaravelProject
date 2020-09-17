@@ -14,7 +14,7 @@
         <h1 class="font-bold text-xl">
             <a href="/">My University Progress</a>
         </h1>
-        <p class="mx-5 mt-2">
+        <p class="mx-5 mt-2 mb-5">
             My University Progress es una plataforma que tiene como proposito ayudarte a llevar un control
             de todo tu progreso universitario de una manera amigable y un poco diferente a lo que estamos
             acostumbrados. Nos acompañemos de herramientas graficas de manera que la interpretacion de todos

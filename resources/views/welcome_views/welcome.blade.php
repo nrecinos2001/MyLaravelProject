@@ -32,6 +32,12 @@
                     Login!
                 </button>
             </a>
+            <div class="mx-auto w-1/2 mt-2">
+                <p class="italic my-1">Universidades:</p>
+                @foreach ($universities as $university)
+                    <img src="{{asset("storage/Universities/{$university->logo}")}}" alt="{{$university->name}}" class="w-10 mx-auto rounded">
+                @endforeach
+            </div>
         </div>
     </div>
 </body>

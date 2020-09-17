@@ -57,6 +57,7 @@ Route::prefix('admin/add')->group(function() {
     Route::post('Career', [AdminController::class, 'addCareer']);
     Route::post('Country', [AdminController::class, 'addCountry']);
     Route::post('SocialMedia', [AdminController::class, 'addSocialMedia']);
+    Route::post('NumberofSubjects', [AdminController::class, 'addnOfSubjects']);
 });
 
 

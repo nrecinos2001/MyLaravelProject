@@ -72,7 +72,14 @@
         </div>
         <br>
     @endif
-
+    {{-- Numero de Materias --}}
+    @if (session('nOfSubjects'))
+        <br>
+        <div class="border border-purple-700 w-1/2 mx-auto text-center text-purple-700 my-1 p-1">
+            ¡Número de materias asignado con éxito!
+        </div>
+        <br>
+    @endif
 
     {{--Añadir universidad --}}
     <button class="mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5" onclick="showUadd()">
@@ -209,21 +216,21 @@
         Asignar notas
     </button>
     <br>
-    <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="country">
-        <form action="/admin/add/Country/" method="POST">
+    <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="numbers">
+        <form action="/admin/add/NumberofSubjects" method="POST">
             @csrf
             <label for="subsNumber">Asigne el numero de materias</label>
             <br>
-            <input type="number" name="subsNumber" id="subsNumber" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
+            <input type="number" name="subsNumber" id="subsNumber" class="border rounded w-1/2 text-center h-10" placeholder="Número de materias">
             <br>
-            <select name="universityNumber" id="">
+            <select name="universityNumber" id="" class="border rounded w-1/2 h-10 my-5">
                 <option value="0" selected disabled>Seleccionar la universidad</option>
-                @foreach ($universities as $u)
+                @foreach ($university as $u)
                     <option value="{{$u->id}}">{{$u->name}}</option>
                 @endforeach
             </select>
             <br>
-            <select name="careerNumber" id="">
+            <select name="careerNumber" id="" class="border rounded w-1/2 h-10">
                 <option value="0" selected disabled>Seleccionar la carrera</option>
                 @foreach ($careers as $c)
                     <option value="{{$c->id}}">{{$c->name}}</option>

@@ -10,18 +10,31 @@ use Illuminate\Http\Request;
 class GoalsController extends Controller
 {
     public function show(){
-        $users = Users::select('*')->where('id', auth()->id()
-            )->with('university','career'
-            )->get();
-        $goals = Goals::select('*')->where('user_id', auth()->id())->get();
-        $totagoals = Goals::where('user_id', auth()->id())->count();
-        $higher = Goals::where('user_id', auth()->id())->max('cicle');
+        $users = Users::select('*')
+        ->where('id', auth()->id())
+        ->with('university','career')
+        ->get();
+
+        $goals = Goals::select('*')
+        ->where('user_id', auth()->id())
+        ->get();
+
+        $totagoals = Goals::where('user_id', auth()->id())
+        ->count();
+
+        $higher = Goals::where('user_id', auth()->id())
+        ->max('cicle');
+
         return view('Profile.goals', compact('users', 'goals'), ['tG'=>$totagoals, 'higher'=>$higher]);
     }
+
     public function adding(){
-        $users = Users::where('id', auth()->id())->get('*');
+        $users = Users::where('id', auth()->id())
+        ->get('*');
+
         return view('Profile.goalsAdd', compact('users'));
     }
+
     public function store(Request $request){
         $request->validate([
             'status' => 'required|integer|max:2',
@@ -40,6 +53,7 @@ class GoalsController extends Controller
 
         return redirect()->route('showGoals');
     }
+    
     public function update(Request $request){
         $request->validate([
             'status' => 'required|integer|max:2',

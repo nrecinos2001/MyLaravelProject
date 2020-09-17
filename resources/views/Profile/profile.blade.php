@@ -47,7 +47,7 @@
         <h3 class="text-green-500 text-xl text-center">Progreso de la carrera</h3>
         <br>
     </div>
-    <div class="lg:flex lg:w-2/4 h-64 ml-1/4 sm:w-full h-auto mb-2">
+    <div class="lg:flex lg:w-2/4 h-64 ml-1/4 sm:w-full lg:h-auto lg:mb-2 sm:h-40 sm:w-full">
         @foreach($sbyCareer as $sbc)
         @include('Elements.chart')
         @endforeach

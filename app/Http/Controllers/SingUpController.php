@@ -13,10 +13,18 @@ use Illuminate\Support\Facades\Storage;
 class SingUpController extends Controller
 {
     public function singUp(){
-        $countries = Countries::select('id', 'name')->get();
-        $universities = Universities::select('id', 'name')->get();
-        $careers = Careers::select('id', 'name')->get();
-        $faculties = Faculties::select('id', 'name')->get();
+        $countries = Countries::select('id', 'name')
+        ->get();
+
+        $universities = Universities::select('id', 'name')
+        ->get();
+
+        $careers = Careers::select('id', 'name')
+        ->get();
+
+        $faculties = Faculties::select('id', 'name')
+        ->get();
+
         return view('welcome_views.singup', compact('careers', 'faculties','countries', 'universities'));
     }
     public function singUpTwo(Request $request){

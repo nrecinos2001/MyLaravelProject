@@ -16,74 +16,55 @@
             <br>
             <p>Registrate</p>
         </h1>
-        
+        @if($errors->any())
+            <div class="bg-red-400 text-red-700 w-1/2 mx-auto">
+                <ul>
+                    @foreach ($errors as $error)
+                        <li>$error</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ route('registerFinish') }}" method="POST" class="py-5" enctype="multipart/form-data">
             @csrf
             <div class="container grid grid-cols-1 lg:grid-cols-2">
                 <input required type="text" placeholder="Ingresa tu apellido" name="lastname" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                @error('lastname')
-                    <p>Error en este campo</p>
-                @enderror
                 <input required type="text" placeholder="Ingresa tu Carne" name="student_id" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                @error('student_id')
-                    <p>Error en este campo</p>
-                @enderror
                 <select required name="country" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     <option selected disabled>Selecciona tu pais</option>
                     @foreach ($countries as $country)
                     <option value="{{$country->id}}">{{$country->name}}</option>
                     @endforeach
                 </select>
-                @error('country')
-                    <p>Error en este campo</p>
-                @enderror
                 <select required name="gender" id="" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     <option selected disabled>Selecciona tu sexo</option>
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                     <option value="P">Personalizado</option>
                 </select>
-                @error('gender')
-                    <p>Error en este campo</p>
-                @enderror
                 <select required name="university" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     <option selected disabled>Selecciona tu universidad</option>
                     @foreach ($universities as $university)
                     <option value="{{$university->id}}">{{$university->name}}</option>
                     @endforeach
                 </select>
-                @error('university')
-                    <p>Error en este campo</p>
-                @enderror
                 <select required name="career" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     <option selected disabled>Selecciona tu carrera</option>
                     @foreach ($careers as $career)
                     <option value="{{$career->id}}">{{$career->name}}</option>
                     @endforeach
                 </select>
-                @error('career')
-                    <p>Error en este campo</p>
-                @enderror
-                {{--  --}}
+                {{-- Facultad --}}
                 <select required name="faculty" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
                     <option selected disabled>Selecciona tu Facultad</option>
                     @foreach ($faculties as $faculty)
                     <option value="{{$faculty->id}}">{{$faculty->name}}</option>
                     @endforeach
                 </select>
-                @error('faculty')
-                    <p>Error en este campo</p>
-                @enderror
                 {{-- Username --}}
                 <input type="text" placeholder="Ingresa tu nombre de usuario" name="username" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                @error('username')
-                    <p>Error en este campo</p>
-                @enderror
                 {{--Profile Picture--}}
                 <input type="file" placeholder="Foto de perfil" name="profilepic" accept="image/*" class="border border-purple-300 sm:my-2 my-3 py-1 mx-3 px-1 rounded">
-                @error('profilepic')
-                    <p>Error en este campo</p>
-                @enderror
             </div>
             
             <br>
@@ -91,10 +72,6 @@
                 Paso Siguiente
             </button>
         </form>
-        <p>
-            Al registrarte aceptas las normas comunitarias que nuestro sitio ofrece a sus usuarios.
-            ¡Esperamos tengas una buena experiencia!
-        </p>
     </div>
 </body>
 </html>
