@@ -26,7 +26,7 @@ class SMediaSeeder extends Seeder
         ]);
         $linkdein = SocialMedia::create([
             'socialName' => 'LinkdeIn',
-            'socialPhoto' => 'linkdein.png'
+            'socialPhoto' => 'linkedin.png'
         ]);
         $github = SocialMedia::create([
             'socialName' => 'GitHub',

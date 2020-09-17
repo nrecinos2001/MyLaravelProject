@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\SubjectsByCareer;
+use App\Models\Numbers;
 use Illuminate\Database\Seeder;
 
-class NoSubjectsSeeder extends Seeder
+class NumbersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,11 +12,10 @@ class NoSubjectsSeeder extends Seeder
      */
     public function run()
     {
-        $careerOne = SubjectsByCareer::create([
+        $newNumber = Numbers::create([
             'university_id' => 1,
             'career_id' => 1,
-            'faculty_id' => 1,
-            'subjects' => 44
+            'nofSubjects' => 44
         ]);
     }
 }

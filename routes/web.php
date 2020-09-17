@@ -48,7 +48,6 @@ Route::prefix('search')->group(function(){
 //Prefijo para 'acerca'
 Route::prefix('about')->group(function() {
     Route::get('/', [AboutController::class, 'show_about']);
-    Route::get('/historia', [AboutController::class, 'show_history']);
 });
 //Añadir Información por el administrador
 Route::prefix('admin/add')->group(function() {

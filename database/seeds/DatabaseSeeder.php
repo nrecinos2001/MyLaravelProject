@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
             FacultySeeder::class,
             SMediaSeeder::class,
             UniversitySeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            NumbersSeeder::class,
+            SubjecsSeeder::class
         ]);
     }
 }

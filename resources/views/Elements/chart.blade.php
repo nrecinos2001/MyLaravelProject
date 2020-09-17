@@ -9,7 +9,7 @@
             labels: ['Materias Pasadas', 'Materias Restantes'],
             datasets:[{
                 label: 'Progreso de la carrera',
-                data: [ "{{$pro['done']}}", "{{$pro['missing']}}"],
+                data: [{{$user->subjectsDone}}, {{$sbc->nofSubjects - $user->subjectsDone}}],
                 backgroundColor: [
                     '#48bb78', '#9f7aea'
                 ]
@@ -25,7 +25,7 @@
             labels: ['CUM Alcanzado', 'Distancia al 10'],
             datasets:[{
                 label: 'CUM',
-                data: [ "{{$pro['CUM_ach']}}", "{{$pro['CUM_miss']}}"],
+                data: [ "{{$user->userCUM}}", "{{10 - $user->userCUM}}"],
                 backgroundColor: [
                     '#48bb78', '#9f7aea'
                 ]

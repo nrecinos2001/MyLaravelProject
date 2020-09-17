@@ -13,7 +13,7 @@
     </style>
     <link rel="icon" type="image/png" href="/images/logo.png">
 </head>
-<body class="bg-white">
+<body class="bg-white h-screen">
 @foreach ($users as $user)
     @include('Elements.navbar')
 @endforeach
@@ -35,23 +35,37 @@
                     {{$result->university->name}}, {{$result->country->name}}.
                 </p>
                 <p>
-                    @foreach ($subjectsDone as $sd)
-                    @if($sd->student_id == $result->id)
-                    {{$subjectsDone->score}} 
+                    CUM: 
+                    @if(!is_null($result->userCUM))
+                    {{$result->userCUM}}
+                    @else
+                    0.0
                     @endif
-                    @endforeach
+                    - Materias completadas: 
+                    @if(!is_null($result->subjectsDone))
+                    {{$result->subjectsDone}}
+                    @else
+                    0
+                    @endif
                     /
-                    @foreach ($allSubjects as $as)
-                        {{$as->subjects}}
+                    @foreach($sbyCareer as $as)
+                        @if($as->university_id == $result->university_id && $as->career_id == $result->university_id)
+                            {{$as->nofSubjects}}
+                        @endif
                     @endforeach
-                    materias cursadas
                 </p>
             </div>
             <div class="flex items-center">
+                @if(!is_null($result->image))
                 <img src="{{asset("storage/profile/{$result->image}")}}" alt="{{$result->name}} Picture" class="w-32 h-32 rounded-full mr-4">
+                @else
+                <img src="{{asset("storage/profile/defaultprofpic.jpg")}}" alt="{{$result->name}} Picture" class="w-32 h-32 rounded-full mr-4">
+                @endif
                 <div class="text-sm">
-                    <p class="text-purple-200 leading-none">{{$result->name}} </p>
-                    <p class="text-purple-100"> {{$result->career->name}} </p>
+                    <p class="text-white leading-none">{{$result->name}} {{$result->lastname}}</p>
+                    <p class="text-gray-100"> 
+                        {{$result->email}} 
+                    </p>
                     <div class="w-2/5">
                         <div class="flex">
                             @foreach($userMedia as $uMedia)
@@ -67,7 +81,6 @@
                             @endforeach
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>

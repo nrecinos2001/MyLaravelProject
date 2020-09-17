@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectsbycareerTable extends Migration
+class CreateNumbersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateSubjectsbycareerTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjectsbycareers', function (Blueprint $table) {
+        Schema::create('numbers', function (Blueprint $table) {
             $table->id();
             $table->integer('university_id');
             $table->integer('career_id');
-            $table->integer('faculty_id');
-            $table->integer('subjects');
+            $table->integer('nofSubjects');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateSubjectsbycareerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjectsbycareers');
+        Schema::dropIfExists('numbers');
     }
 }

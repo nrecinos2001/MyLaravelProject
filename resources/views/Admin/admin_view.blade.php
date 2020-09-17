@@ -204,7 +204,37 @@
             </button>
         </form>
     </div>
-    
+    {{-- Vincular --}}
+    <button class="mx-auto bg-green-400 hover:bg-green-600 text-white font-bold py-3 px-4 rounded margin-white mb-5" onclick="showCareerNu()">
+        Asignar notas
+    </button>
+    <br>
+    <div class="mx-auto border border-blue-500 mb-5 hiddenE" id="country">
+        <form action="/admin/add/Country/" method="POST">
+            @csrf
+            <label for="subsNumber">Asigne el numero de materias</label>
+            <br>
+            <input type="number" name="subsNumber" id="subsNumber" class="border rounded w-1/2 text-center h-10" placeholder="Nombre">
+            <br>
+            <select name="universityNumber" id="">
+                <option value="0" selected disabled>Seleccionar la universidad</option>
+                @foreach ($universities as $u)
+                    <option value="{{$u->id}}">{{$u->name}}</option>
+                @endforeach
+            </select>
+            <br>
+            <select name="careerNumber" id="">
+                <option value="0" selected disabled>Seleccionar la carrera</option>
+                @foreach ($careers as $c)
+                    <option value="{{$c->id}}">{{$c->name}}</option>
+                @endforeach
+            </select>
+            <br>
+            <button class="mx-auto bg-blue-400 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded margin-white mt-5 mb-5">
+                Agregar
+            </button>
+        </form>
+    </div>
    
 </div>
 
@@ -227,6 +257,8 @@
     }
     function showSMadd() {
         document.getElementById('socialmedia').classList.toggle("hiddenE");
+    }function showCareerNu() {
+        document.getElementById('numbers').classList.toggle("hiddenE");
     }
 </script>
 </body>

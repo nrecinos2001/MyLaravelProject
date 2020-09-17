@@ -31,6 +31,11 @@ class SingUpController extends Controller
             'username' => 'required|string|max:191',
             'profilepic' => 'image|max:5000'
         ]);
+        if(!($request->profilepic)){
+            $image = null;
+        }else{
+            $image = basename(Storage::put('profile', $request->profilepic));
+        }
         $fillUser = AppUser::find(auth()->id());
             $fillUser->id_student = $request->student_id;
             $fillUser->lastname = $request->lastname;
@@ -40,7 +45,7 @@ class SingUpController extends Controller
             $fillUser->faculty_id = $request->faculty;
             $fillUser->career_id = $request->career;
             $fillUser->username = $request->username;
-            $fillUser->image = basename(Storage::put('profile', $request->profilepic)); 
+            $fillUser->image = $image; 
             $fillUser->save();
         return redirect()->route('myProfile');
     }

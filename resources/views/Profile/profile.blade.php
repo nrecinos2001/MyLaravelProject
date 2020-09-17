@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/logo.png">
-    <title>Me!</title>
+    <title>Mi información</title>
 </head>
-<body>
+<body class="h-screen">
     @foreach ($users as $user)
     @include('Elements.navbar')
     <div class="container bg-{{$user->university->color}} lg:w-3/4 mx-auto my-3 text-white rounded lg:flex sm:w-full">
@@ -47,10 +47,11 @@
         <h3 class="text-green-500 text-xl text-center">Progreso de la carrera</h3>
         <br>
     </div>
-    <div class="lg:flex lg:w-2/4 h-64 ml-1/4 sm:w-full">
+    <div class="lg:flex lg:w-2/4 h-64 ml-1/4 sm:w-full h-auto mb-2">
+        @foreach($sbyCareer as $sbc)
         @include('Elements.chart')
+        @endforeach
     </div>
-    <input type="hidden" value="{{$pro['done']}}" name="numbers">
     @endforeach
 </body>
 </html>

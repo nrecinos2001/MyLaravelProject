@@ -30,6 +30,8 @@ class CreateUsersTable extends Migration
                 $table->integer('country_id')->index()->nullable();
                 $table->char('isadmin')->nullable();
                 $table->string('image')->nullable();
+                $table->float('userCUM',4, 2)->nullable();
+                $table->integer('subjectsDone')->nullable();
                 $table->rememberToken();
                 $table->timestamps();
         });

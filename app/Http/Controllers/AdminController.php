@@ -14,8 +14,10 @@ use Illuminate\Support\Facades\Storage;
 class AdminController extends Controller
 {
     public function myAdminProfile(){
+        $university = Universities::get();
+        $careers = Careers::orderBy('name', 'asc')->get();
         $country = Countries::orderBy('name', 'asc')->get();
-        return view('Admin.admin_view', compact('country'));
+        return view('Admin.admin_view', compact('country', 'university', 'careers'));
     }
     //AÑADIR UNIVERSIDAD
     public function addUniversity(Request $request){
